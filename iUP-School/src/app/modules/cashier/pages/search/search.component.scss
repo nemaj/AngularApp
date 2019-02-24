@@ -1,0 +1,33 @@
+.finder {
+  display: flex;
+  justify-content: center;
+  .finder-container {
+    position: relative;
+    width: 400px;
+    .search-contianer {
+      position: absolute;
+      top: 45px;
+      left: 10px;
+      min-width: 200px;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background: rgba(#efefef, 0.8);
+      p {
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        background: #fff;
+        color: #626262;
+        margin-bottom: 5px;
+        padding: 3px 15px;
+        &:hover {
+          background: rgba(#fff, 0.7);
+          color: #353535;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

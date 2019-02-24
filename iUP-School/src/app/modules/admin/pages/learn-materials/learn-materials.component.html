@@ -1,0 +1,38 @@
+<div class="materials">
+  <h4>Materials</h4>
+
+  <button type="button" class="btn btn-success btn-add" (click)="addMaterial()">
+    Add Material
+  </button>
+
+  <div class="card strpied-tabled-with-hover mt-4">
+    <div class="card-body table-full-width">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th style="width:17px;">No.</th>
+            <th>Name</th>
+            <th class="d-none d-sm-none d-md-table-cell">Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of materialList; let idx = index">
+            <td>{{ idx + 1 }}</td>
+            <td>{{ item.name }}</td>
+            <th
+              class="d-none d-sm-none d-md-table-cell"
+              style="font-weight: normal;"
+            >
+              {{ item.type }}
+            </th>
+            <td class="action">
+              <span class="fa fa-download" (click)="downloadDocs(item)"></span>
+              <span class="fa fa-trash-o" (click)="delete(item)"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

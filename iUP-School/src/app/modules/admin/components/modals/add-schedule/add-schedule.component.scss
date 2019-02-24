@@ -1,0 +1,13 @@
+.schedule-forms {
+  .time-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    label {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 0;
+      min-width: 100px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    {{ productInfo?.name }} Reviews ({{ reviewList.length }})
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body product-review">
+  <div class="reviews" *ngFor="let review of reviewList">
+    <div class="header">
+      <div class="name">
+        <span>{{ review.name }}</span>
+        <span class="date">{{ review.date | timeAgo }}</span>
+      </div>
+      <app-rating
+        class="rating"
+        rate="{{ review.rate }}"
+        [readonly]="true"
+        size="sm"
+      ></app-rating>
+    </div>
+    <div class="body">
+      <p>{{ review.message }}</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="close()">Close</button>
+</div>

@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ productInfo?.name }} images</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body product-images">
+  <div class="wrapper">
+    <carousel [interval]="0" [showIndicators]="false">
+      <slide *ngFor="let img of productImg">
+        <img
+          [src]="img.image"
+          alt="first slide"
+          style="display: block; width: 100%;"
+        />
+      </slide>
+    </carousel>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="close()">Close</button>
+</div>

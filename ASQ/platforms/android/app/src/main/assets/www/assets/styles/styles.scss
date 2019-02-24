@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import './modules/table';
+@import './modules/breadcrumb';
+@import './modules/tabset';
+@import './modules/checkbox';
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+.app-admin {
+  color: #67757c;
+}
+
+.table .pagination {
+  display: inline-flex;
+}
+
+.agile_top_brands_grids {
+  .top_brand_left {
+    position: relative;
+    margin-bottom: 30px;
+
+    .column {
+      -webkit-box-shadow: 0 10px 6px -6px #bbb;
+      -moz-box-shadow: 0 10px 6px -6px #bbb;
+      box-shadow: 0 10px 6px -6px #bbb;
+      .agile_top_brand_left_grid {
+        background: #f5f5f5;
+      }
+    }
+
+    .snipcart-thumb a img {
+      width: 150px;
+    }
+  }
+}
+
+.agileinfo_single_right_details {
+  // width: 100% !important;
+}
+
+@media (max-width: 575px) {
+  .shop-modal {
+    width: 100%;
+    .modal-content {
+    }
+  }
+}

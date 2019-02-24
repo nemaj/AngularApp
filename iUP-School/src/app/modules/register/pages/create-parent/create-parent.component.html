@@ -1,0 +1,129 @@
+<div class="create-parent">
+  <div class="cp-wrapper">
+    <div class="cp-header" routerLink="/app">
+      <main-logo class="svg-logo-size"></main-logo>
+      <span>I-UP School</span>
+    </div>
+    <div class="header"><h3>Create Account</h3></div>
+    <div class="form">
+      <form [formGroup]="ngForm" (submit)="submit(ngForm.invalid)">
+        <div class="up-input">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            formControlName="firstName"
+          />
+          <span
+            class="error"
+            *ngIf="
+              controls.firstName.invalid &&
+              (controls.firstName.dirty || controls.firstName.touched)
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            formControlName="lastName"
+          />
+          <span
+            class="error"
+            *ngIf="
+              controls.lastName.invalid &&
+              (controls.lastName.dirty || controls.lastName.touched)
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            formControlName="username"
+            (ngModelChange)="checkUsername($event)"
+          />
+          <span
+            class="error"
+            *ngIf="
+              controls.username.invalid &&
+              (controls.username.dirty || controls.username.touched) &&
+              controls.username.errors.required
+            "
+          >
+            *This field is required
+          </span>
+          <span
+            class="error"
+            *ngIf="
+              controls.username.invalid &&
+              (controls.username.dirty || controls.username.touched) &&
+              controls.username.errors.incorrect
+            "
+          >
+            *Username is already used
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            formControlName="password"
+          />
+          <span
+            class="error"
+            *ngIf="
+              controls.password.invalid &&
+              (controls.password.dirty || controls.password.touched) &&
+              controls.password.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="confirm">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm"
+            name="confirm"
+            formControlName="confirm"
+          />
+          <span
+            class="error"
+            *ngIf="
+              controls.confirm.invalid &&
+              (controls.confirm.dirty || controls.confirm.touched) &&
+              controls.confirm.errors.required
+            "
+          >
+            *This field is required
+          </span>
+          <span
+            class="error"
+            *ngIf="
+              (controls.confirm.dirty || controls.confirm.touched) &&
+              controls.confirm.errors?.MatchPassword
+            "
+          >
+            *Password don't match
+          </span>
+        </div>
+        <button class="btn up-button" type="submit" [disabled]="ngForm.invalid">
+          Create
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

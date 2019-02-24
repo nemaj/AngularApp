@@ -1,0 +1,31 @@
+<app-admin-breadcrumbs [page]="breadcrumbs"></app-admin-breadcrumbs>
+<div class="container chart-report">
+  <div class="title">
+    <span>Collection Report</span>
+    <button class="btn btn-print" (click)="print()">
+      <i class="fa fa-print"></i> Print
+    </button>
+  </div>
+  <canvas
+    *ngIf="isCollection"
+    baseChart
+    [datasets]="collectionData"
+    [labels]="collectionLabels"
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+  >
+  </canvas>
+  <div class="chart-wrapper">
+    <canvas
+      *ngIf="isCollection"
+      #chartCollection
+      baseChart
+      [datasets]="collectionData"
+      [labels]="collectionLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    ></canvas>
+  </div>
+</div>

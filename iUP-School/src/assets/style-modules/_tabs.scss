@@ -1,0 +1,39 @@
+.up-tabs {
+  .nav-tabs {
+    border-bottom: 2px solid #61ba6d;
+    .nav-item {
+      margin-bottom: 0;
+      a {
+        border-bottom: 0;
+        padding: 1rem 1.5rem;
+        text-transform: uppercase;
+        &.active {
+          background: #f5f7fa;
+        }
+      }
+    }
+  }
+  .tab-content {
+    padding-top: 20px;
+  }
+}
+
+.admin-tabs {
+  .nav-tabs {
+    border-bottom: 2px solid #9368e9;
+    .nav-item {
+      margin-bottom: 0;
+      a {
+        border-radius: 0;
+        border-bottom: 0;
+        padding: 1rem 1.5rem;
+        text-transform: uppercase;
+        color: #9a9a9a;
+        &.active {
+          background: #fff;
+          border-color: rgba(#9368e9, 0.6);
+        }
+      }
+    }
+  }
+}

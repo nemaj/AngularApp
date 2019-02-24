@@ -1,0 +1,14 @@
+<app-admin-breadcrumbs [page]="breadcrumbs"></app-admin-breadcrumbs>
+<div class="container dashboard">
+  <div class="title"><span>ASQ Shop Collection Chart</span></div>
+  <canvas
+    *ngIf="isReady"
+    baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+  >
+  </canvas>
+</div>

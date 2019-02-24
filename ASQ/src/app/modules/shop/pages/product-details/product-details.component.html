@@ -1,0 +1,102 @@
+<div class="breadcrumbs">
+  <div class="container">
+    <ul
+      class="breadcrumb breadcrumb1 animated wow slideInLeft"
+      data-wow-delay=".5s"
+    >
+      <li>
+        <a routerLink="/">
+          <span class="fa fa-home" aria-hidden="true"></span> Home
+        </a>
+      </li>
+      <li class="active">Product Details</li>
+    </ul>
+  </div>
+</div>
+<div class="product-details container">
+  <div class="agileinfo_single row">
+    <div class="col-md-4 col-12 agileinfo_single_left">
+      <img
+        id="example"
+        [src]="productInfo?.image"
+        alt=" "
+        width="100%"
+        height="100%"
+        class="img-responsive"
+      />
+      <a class="view-img" (click)="viewImages()">View Images</a>
+    </div>
+    <div class="col-md-8 col-12 agileinfo_single_right">
+      <h2>{{ productInfo?.name }}</h2>
+      <div class="rating1">
+        <app-rating
+          rate="{{ productInfo?.rate }}"
+          [readonly]="true"
+          [showLabel]="true"
+        ></app-rating>
+        <a
+          class="view-review"
+          *ngIf="productInfo?.reviewCounts"
+          (click)="viewReviews(productInfo?.reviewCounts)"
+        >
+          View Reviews ( <i>{{ productInfo?.reviewCounts }}</i> )
+        </a>
+      </div>
+      <div class="supplier-info">
+        <div class="title">
+          <span>
+            Sold by
+            <i
+              class="chat"
+              routerLink="/chat/{{ supplierInfo?.id }}"
+              *ngIf="isCustomer"
+            >
+              <i class="fa fa-comments"></i> Chat
+            </i>
+          </span>
+          <a routerLink="/business/{{ supplierInfo?.id }}">
+            {{ supplierInfo?.name }}
+          </a>
+        </div>
+      </div>
+      <div class="w3agile_description types">
+        <h4 *ngIf="productInfo?.unit">
+          Unit: <span>{{ productInfo?.unitInfo?.unit }}</span>
+        </h4>
+        <h4>
+          Type: <span>{{ productInfo?.typeDesc }}</span>
+        </h4>
+      </div>
+      <div class="w3agile_description">
+        <h4>Description :</h4>
+        <p>{{ productInfo?.description }}</p>
+      </div>
+      <div class="snipcart-item block">
+        <div class="snipcart-thumb agileinfo_single_right_snipcart">
+          <h4 class="m-sing">{{ productInfo?.price | currency: '₱' }}</h4>
+        </div>
+        <div class="snipcart-details agileinfo_single_right_details">
+          <form>
+            <fieldset>
+              <input
+                type="button"
+                name="submit"
+                value="Add to cart"
+                class="button"
+                (click)="addToCart(+productInfo?.id, +productInfo?.businessId)"
+              />
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-lg-4 col-md-12 supplier-info">
+      <div class="title">
+        <span>Sold by</span> <a>{{ supplierInfo?.name }}</a>
+      </div>
+    </div> -->
+  </div>
+</div>
+<!-- <app-product-suggest
+  productType="{{ productInfo?.type }}"
+></app-product-suggest> -->

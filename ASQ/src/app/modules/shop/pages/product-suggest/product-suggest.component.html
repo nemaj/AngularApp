@@ -1,0 +1,31 @@
+<div class="suggest" *ngIf="productList.length">
+  <div class="container">
+    <h3 class="text-center">Suggestion Products</h3>
+    <div class="products-right">
+      <div class="agile_top_brands_grids row">
+        <div
+          class="col-md-4 top_brand_left"
+          *ngFor="let product of productList"
+        >
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+              <div class="agile_top_brand_left_grid1">
+                <figure>
+                  <div class="snipcart-item block">
+                    <div class="snipcart-thumb">
+                      <a (click)="openProduct(product.id)"
+                        ><img title=" " alt=" " [src]="product.image"
+                      /></a>
+                      <p>{{ product.name }}</p>
+                      <h4>{{ product.price | currency: '₱' }}</h4>
+                    </div>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

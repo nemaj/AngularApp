@@ -1,0 +1,42 @@
+.up-input {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 10px;
+  label {
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  input,
+  textarea {
+    padding: 7px 5px;
+    font-size: 12px;
+    width: 100%;
+  }
+  select {
+    border: 1px solid #a9a9a9;
+    border-radius: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+  }
+  .error {
+    color: #cc4947;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 10px;
+  }
+}
+
+.up-button {
+  // background: linear-gradient(to right, #61ba6d, #83c331);
+  background: #61ba6d !important;
+  opacity: 0.85;
+  color: #fff;
+  &:hover {
+    opacity: 1;
+    color: #fff;
+  }
+  &:disabled {
+    opacity: 0.6 !important;
+  }
+}

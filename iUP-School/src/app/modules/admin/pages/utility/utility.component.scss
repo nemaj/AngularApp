@@ -1,0 +1,24 @@
+.utilities {
+  .table {
+    tbody {
+      tr {
+        border-top: 1px solid #dee2e6;
+        td {
+          border-top: 0;
+          &.action {
+            span.fa {
+              cursor: pointer;
+              opacity: 0.7;
+              &:first-child {
+                margin-left: 5px;
+              }
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

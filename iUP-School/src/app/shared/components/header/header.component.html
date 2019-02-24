@@ -1,0 +1,129 @@
+<header class="header-area">
+  <!-- Top Header Area -->
+  <div class="top-header">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 h-100">
+          <div
+            class="header-content h-100 d-flex align-items-center justify-content-between"
+          >
+            <div class="academy-logo">
+              <a routerLink="/app">
+                <!-- <img src="assets/img/core-img/logo.png" alt="" /> -->
+                <main-logo class="main-logo"></main-logo>
+                <span> I-UP School </span>
+              </a>
+            </div>
+            <div class="login-content" *ngIf="!isLogin">
+              <a routerLink="/create">Register</a> /
+              <a routerLink="/login">Login</a>
+            </div>
+            <div class="login-content" *ngIf="isLogin" dropdown>
+              <a
+                id="button-basic"
+                dropdownToggle
+                aria-controls="dropdown-basic"
+              >
+                <i class="fa fa-user-circle mr-1"></i>
+                {{ userStatus?.isAdmin ? 'Administrator' : accountName }}
+              </a>
+              <ul
+                id="dropdown-basic"
+                *dropdownMenu
+                class="dropdown-menu"
+                role="menu"
+                aria-labelledby="button-basic"
+              >
+                <li role="menuitem" *ngIf="userStatus?.isAdmin">
+                  <a class="dropdown-item" routerLink="/admin">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                  </a>
+                </li>
+                <li role="menuitem" *ngIf="userStatus?.isParent">
+                  <a class="dropdown-item" routerLink="parent/{{ username }}">
+                    <i class="fa fa-info-circle"></i> Profile
+                  </a>
+                </li>
+                <li role="menuitem" *ngIf="userStatus?.isCashier">
+                  <a class="dropdown-item" routerLink="/cashier">
+                    <i class="fa fa-info-circle"></i> Biiling
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item" (click)="logout()">
+                    <i class="fa fa-sign-out"></i> Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar Area -->
+  <div
+    class="academy-main-menu"
+    [ngStyle]="menuStyle"
+    [ngClass]="{ 'affix-style': isMenuFixed }"
+  >
+    <div class="classy-nav-container breakpoint-off">
+      <div class="container">
+        <!-- Menu -->
+        <nav class="classy-navbar justify-content-between" id="academyNav">
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler" (click)="toggleClassyMenu()">
+            <span class="navbarToggler"
+              ><span></span><span></span><span></span
+            ></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu" [ngClass]="{ 'menu-on': openClassyMenu }">
+            <!-- close btn -->
+            <div class="classycloseIcon" (click)="toggleClassyMenu()">
+              <div class="cross-wrap">
+                <span class="top"></span><span class="bottom"></span>
+              </div>
+            </div>
+
+            <!-- Nav Start -->
+            <div class="classynav">
+              <ul>
+                <li><a routerLink="home">Home</a></li>
+                <li>
+                  <a routerLink="portal" *ngIf="userStatus?.isParent">Portal</a>
+                </li>
+                <li>
+                  <a routerLink="pre-enroll" *ngIf="userStatus?.isParent">
+                    Pre-Enroll
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="grading" *ngIf="userStatus?.isTeacher">
+                    Grading
+                  </a>
+                </li>
+                <!-- <li><a>Teachers</a></li>
+                <li><a>About Us</a></li>
+                <li><a>Course</a></li> -->
+              </ul>
+            </div>
+            <!-- Nav End -->
+          </div>
+
+          <!-- Calling Info -->
+          <div class="calling-info">
+            <div class="call-center">
+              <a href="tel:+654563325568889"
+                ><i class="icon-telephone-2"></i>
+                <span>(+65) 456 332 5568 889</span></a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

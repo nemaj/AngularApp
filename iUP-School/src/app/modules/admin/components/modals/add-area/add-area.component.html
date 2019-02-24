@@ -1,0 +1,28 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">{{ isEdit ? 'Update' : 'Add' }} Learning Area</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <form #areaForm="ngForm">
+    <div class="up-modal-body areas-forms">
+      <div class="up-input">
+        <label>Learning Area: </label>
+        <input type="text" name="area" [(ngModel)]="area" required />
+      </div>
+    </div>
+    <div class="up-modal-footer">
+      <button class="btn btn-default" (click)="close()">Cancel</button>
+      <button
+        class="btn up-button"
+        type="submit"
+        (click)="submit(areaForm.invalid)"
+        [disabled]="areaForm.invalid"
+      >
+        {{ isEdit ? 'Update' : 'Save' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<app-admin-breadcrumbs [page]="breadcrumbs"></app-admin-breadcrumbs>
+<div class="product-type">
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-header"><span class="title">Product Types</span></div>
+        <div class="table-controls d-none d-sm-table-cell">
+          <button class="btn btn-primary btn-sm" (click)="addUser()">
+            Add Type
+          </button>
+        </div>
+        <table
+          class="table custom-table"
+          [mfData]="data"
+          #mf="mfDataTable"
+          [mfRowsOnPage]="10"
+        >
+          <thead>
+            <tr>
+              <th>
+                <mfDefaultSorter by="type" class="sorter">
+                  Product Type
+                </mfDefaultSorter>
+              </th>
+              <th width="20%" style="text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data">
+              <td>{{ item.type }}</td>
+              <td>
+                <div class="action">
+                  <i
+                    class="fa fa-pencil-square-o"
+                    (click)="addUser(item.id, true)"
+                  ></i>
+                  <i class="fa fa-trash-o" (click)="deleteUser(item)"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

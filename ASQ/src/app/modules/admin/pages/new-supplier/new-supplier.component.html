@@ -1,0 +1,58 @@
+<app-admin-breadcrumbs [page]="breadcrumbs"></app-admin-breadcrumbs>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-header"><span class="title">Supplier List</span></div>
+      <table
+        class="table custom-table"
+        [mfData]="data"
+        #mf="mfDataTable"
+        [mfRowsOnPage]="5"
+      >
+        <thead>
+          <tr>
+            <th>
+              <mfDefaultSorter by="lastName" class="sorter"
+                >Name</mfDefaultSorter
+              >
+            </th>
+            <th width="10%" class="d-none d-sm-table-cell">
+              <mfDefaultSorter by="age">Role</mfDefaultSorter>
+            </th>
+            <th width="20%" class="d-none d-sm-none d-md-table-cell">
+              <mfDefaultSorter by="role">Date Created</mfDefaultSorter>
+            </th>
+            <th width="20%" style="text-align: center;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td>{{ item.lastName + ', ' + item.firstName }}</td>
+            <td class="d-none d-sm-table-cell">{{ item.role }}</td>
+            <td class="d-none d-sm-none d-md-block">
+              {{ item.created_at | date: 'short' }}
+            </td>
+            <td>
+              <div class="action">
+                <i
+                  class="fa fa-check-square-o"
+                  (click)="confirm(item)"
+                  title="Confirm"
+                ></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <mfBootstrapPaginator
+                [rowsOnPageSet]="[5, 10, 25]"
+              ></mfBootstrapPaginator>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

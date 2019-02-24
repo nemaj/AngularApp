@@ -1,0 +1,41 @@
+<div
+  class="breadcumb-area bg-img"
+  style="background-image: url(assets/img/bg-img/breadcumb.jpg);"
+>
+  <div class="bradcumbContent"><h2>Grading System</h2></div>
+</div>
+<div class="grading section-padding-100">
+  <div class="container">
+    <div class="controls">
+      <h3>Panel Control:</h3>
+      <div class="forms">
+        <div class="select up-input">
+          <select
+            class="form-control"
+            name="level"
+            id="level"
+            [(ngModel)]="level"
+            (ngModelChange)="getPupils()"
+            required
+          >
+            <option value="" selected disabled>Select grade level</option>
+            <option *ngFor="let item of levelList" [value]="item.id">
+              {{ item.level }}
+            </option>
+          </select>
+        </div>
+        <!-- <div class="button">
+          <button class="btn up-button" (click)="getPupils()">Go</button>
+        </div> -->
+      </div>
+    </div>
+    <div class="lists" *ngIf="pupilsList.length">
+      <h3>Pupil's List</h3>
+      <div class="item" *ngFor="let item of pupilsList">
+        <span class="name" (click)="showDetails(item)">
+          {{ item.lastName + ', ' + item.firstName }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

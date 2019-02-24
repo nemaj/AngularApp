@@ -1,0 +1,16 @@
+<div class="finder">
+  <div class="finder-container">
+    <input
+      class="form-control"
+      [(ngModel)]="search"
+      (ngModelChange)="find($event)"
+      placeholder="Search..."
+    />
+
+    <div class="search-contianer" *ngIf="isDoneSearch && search">
+      <p *ngFor="let res of searchResult" (click)="select(res)">
+        {{ res.lastName + ', ' + res.firstName + ' ' + res.middleName }}
+      </p>
+    </div>
+  </div>
+</div>

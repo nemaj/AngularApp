@@ -1,0 +1,136 @@
+<div class="breadcrumbs">
+  <div class="container">
+    <ul
+      class="breadcrumb breadcrumb1 animated wow slideInLeft"
+      data-wow-delay=".5s"
+    >
+      <li>
+        <a routerLink="/">
+          <span class="fa fa-home" aria-hidden="true"></span> Home
+        </a>
+      </li>
+      <li class="active">Customer Infomation</li>
+    </ul>
+  </div>
+</div>
+<div class="register customer-info">
+  <div class="container">
+    <div class="login-form-grids">
+      <h5>Customer information</h5>
+      <form
+        role="form"
+        #customerForm="ngForm"
+        (submit)="submit(customerForm.invalid)"
+      >
+        <input
+          type="text"
+          name="street"
+          [(ngModel)]="street"
+          #formStreet="ngModel"
+          placeholder="Street"
+          required
+        />
+        <small
+          *ngIf="
+            formStreet.invalid &&
+            (formStreet.dirty || formStreet.touched) &&
+            formStreet.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="text"
+          placeholder="Enter Province"
+          name="province"
+          [(ngModel)]="province"
+          #formProvince="ngModel"
+          [typeahead]="provinceList"
+          (typeaheadOnSelect)="provinceOnSelect($event)"
+          [typeaheadOptionsLimit]="7"
+          typeaheadOptionField="provDesc"
+          required
+        />
+        <small
+          *ngIf="
+            formProvince.invalid &&
+            (formProvince.dirty || formProvince.touched) &&
+            formProvince.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="text"
+          placeholder="Enter City"
+          name="city"
+          [(ngModel)]="city"
+          [typeahead]="cities"
+          #formCity="ngModel"
+          (typeaheadOnSelect)="cityOnSelect($event)"
+          [typeaheadOptionsLimit]="7"
+          typeaheadOptionField="citymunDesc"
+          required
+        />
+        <small
+          *ngIf="
+            formCity.invalid &&
+            (formCity.dirty || formCity.touched) &&
+            formCity.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="text"
+          placeholder="Enter Barangay"
+          name="brgy"
+          [(ngModel)]="brgy"
+          #formBrgy="ngModel"
+          [typeahead]="brgys"
+          (typeaheadOnSelect)="brgyOnSelect($event)"
+          [typeaheadOptionsLimit]="7"
+          typeaheadOptionField="brgyDesc"
+          required
+        />
+        <small
+          *ngIf="
+            formBrgy.invalid &&
+            (formBrgy.dirty || formBrgy.touched) &&
+            formBrgy.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="text"
+          name="contactNo"
+          [(ngModel)]="contactNo"
+          #formContact="ngModel"
+          placeholder="Contact Number"
+          required
+        />
+        <small
+          *ngIf="
+            formContact.invalid &&
+            (formContact.dirty || formContact.touched) &&
+            formContact.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+
+        <input type="submit" value="{{ isUpdating ? 'Update' : 'Save' }}" />
+      </form>
+    </div>
+  </div>
+</div>

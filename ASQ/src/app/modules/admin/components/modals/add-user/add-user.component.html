@@ -1,0 +1,166 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Create User</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form #userForm="ngForm">
+  <div class="modal-body add-user">
+    <div class="types" *ngIf="!isTypeSelected">
+      <div class="radio-group">
+        <input
+          type="radio"
+          value="1"
+          [(ngModel)]="types"
+          name="type-user"
+          id="type-admin"
+        />
+        <label class="label" for="type-admin">Administrator</label>
+        <input
+          type="radio"
+          value="2"
+          [(ngModel)]="types"
+          name="type-user"
+          id="type-business"
+        />
+        <label class="label" for="type-business">Supplier</label>
+        <input
+          type="radio"
+          value="3"
+          [(ngModel)]="types"
+          name="type-user"
+          id="type-customer"
+        />
+        <label class="label" for="type-customer">Customer</label>
+      </div>
+    </div>
+
+    <div class="forms" *ngIf="isTypeSelected">
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            [(ngModel)]="firstName"
+            #userFirstName="ngModel"
+            required
+          />
+          <small
+            *ngIf="
+              userFirstName.invalid &&
+              (userFirstName.dirty || userFirstName.touched) &&
+              userFirstName.errors.required
+            "
+            class="form-text text-danger"
+            >This field is required.</small
+          >
+        </div>
+        <div class="form-group col">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="lastName"
+            #userLastName="ngModel"
+            required
+          />
+          <small
+            *ngIf="
+              userLastName.invalid &&
+              (userLastName.dirty || userLastName.touched) &&
+              userLastName.errors.required
+            "
+            class="form-text text-danger"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          #userUsername="ngModel"
+          (ngModelChange)="checkUsername($event)"
+          [disabled]="isEdit"
+          required
+        />
+        <small
+          *ngIf="
+            userUsername.invalid &&
+            (userUsername.dirty || userUsername.touched) &&
+            userUsername.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+        <small
+          *ngIf="
+            userUsername.invalid &&
+            (userUsername.dirty || userUsername.touched) &&
+            userUsername.errors.incorrect
+          "
+          class="form-text text-danger"
+        >
+          Username is already used.
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          #userPassword="ngModel"
+          required
+        />
+        <small
+          *ngIf="
+            userPassword.invalid &&
+            (userPassword.dirty || userPassword.touched) &&
+            userPassword.errors.required
+          "
+          class="form-text text-danger"
+          >This field is required.</small
+        >
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="selectType()"
+      [class.disabled]="!types"
+      *ngIf="!isTypeSelected"
+    >
+      Next
+    </button>
+    <button
+      type="submit"
+      (click)="saveUser()"
+      class="btn btn-primary"
+      [class.disabled]="createUserValid()"
+      *ngIf="isTypeSelected"
+    >
+      {{ isEdit ? 'Update' : 'Create' }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,18 @@
+<div class="app-admin">
+  <ng-sidebar-container>
+    <!-- A sidebar -->
+    <ng-sidebar
+      [mode]="_mode"
+      [(opened)]="_opened"
+      [closeOnClickOutside]="false"
+    >
+      <app-sidebar (close)="_toggleSidebar()"></app-sidebar>
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content showBackdrop="true" class="admin-content">
+      <app-admin-header (toggle)="_toggleSidebar()"></app-admin-header>
+      <div class="router-content"><router-outlet></router-outlet></div>
+    </div>
+  </ng-sidebar-container>
+</div>

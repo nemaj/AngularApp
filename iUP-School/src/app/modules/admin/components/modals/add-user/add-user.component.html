@@ -1,0 +1,171 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">Add User</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <form #userForm="ngForm" (submit)="submit(userForm.invalid)">
+    <div class="up-modal-body add-users">
+      <div class="users-type" *ngIf="isEdit">
+        <label>Users Type: {{ typeDesc }}</label>
+      </div>
+      <div class="users-type" *ngIf="!isEdit">
+        <label>Please select User type</label>
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="adminType"
+            name="usersType"
+            value="1"
+            (change)="selectType($event)"
+          />
+          <label class="custom-control-label" for="adminType">
+            Administrator
+          </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="cashierType"
+            name="usersType"
+            value="2"
+            (change)="selectType($event)"
+          />
+          <label class="custom-control-label" for="cashierType">
+            Cashier
+          </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="teacherType"
+            name="usersType"
+            value="3"
+            (change)="selectType($event)"
+          />
+          <label class="custom-control-label" for="teacherType">
+            Teacher
+          </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="parentType"
+            name="usersType"
+            value="4"
+            (change)="selectType($event)"
+            checked
+          />
+          <label class="custom-control-label" for="parentType"> Parent </label>
+        </div>
+      </div>
+
+      <div class="users-form">
+        <label>User's Information</label>
+        <div class="up-input">
+          <input
+            type="text"
+            name="firstName"
+            [(ngModel)]="firstName"
+            #userFirstname="ngModel"
+            placeholder="First Name"
+            required
+          />
+          <span
+            class="error"
+            *ngIf="
+              userFirstname.invalid &&
+              (userFirstname.dirty || userFirstname.touched)
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <input
+            type="text"
+            name="lastName"
+            [(ngModel)]="lastName"
+            #userLastname="ngModel"
+            placeholder="Last Name"
+            required
+          />
+          <span
+            class="error"
+            *ngIf="
+              userLastname.invalid &&
+              (userLastname.dirty || userLastname.touched)
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <input
+            type="text"
+            name="username"
+            [(ngModel)]="username"
+            #userUsername="ngModel"
+            (ngModelChange)="checkUsername($event)"
+            placeholder="Username"
+            required
+          />
+          <span
+            class="error"
+            *ngIf="
+              userUsername.invalid &&
+              (userUsername.dirty || userUsername.touched) &&
+              userUsername.errors.required
+            "
+          >
+            *This field is required
+          </span>
+          <span
+            class="error"
+            *ngIf="
+              userUsername.invalid &&
+              (userUsername.dirty || userUsername.touched) &&
+              userUsername.errors.incorrect
+            "
+          >
+            *Username is already used.
+          </span>
+        </div>
+        <div class="up-input">
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            #userPassword="ngModel"
+            placeholder="Password"
+            required
+          />
+          <span
+            class="error"
+            *ngIf="
+              userPassword.invalid &&
+              (userPassword.dirty || userPassword.touched)
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="up-modal-footer">
+      <button class="btn btn-default" (click)="close()">Cancel</button>
+      <button class="btn up-button" type="submit" [disabled]="userForm.invalid">
+        {{ isEdit ? 'Update' : 'Submit' }}
+      </button>
+    </div>
+  </form>
+</div>

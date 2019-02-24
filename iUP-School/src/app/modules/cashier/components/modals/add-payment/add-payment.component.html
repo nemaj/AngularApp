@@ -1,0 +1,32 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">{{ isEdit ? 'Update' : 'Add' }} Payment</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <form #paymentForm="ngForm">
+    <div class="up-modal-body areas-forms">
+      <div class="up-input">
+        <label>Payment Name: </label>
+        <input type="text" name="payment" [(ngModel)]="payment" required />
+      </div>
+      <div class="up-input">
+        <label>Price: </label>
+        <input type="number" name="price" [(ngModel)]="price" required />
+      </div>
+    </div>
+    <div class="up-modal-footer">
+      <button class="btn btn-default" (click)="close()">Cancel</button>
+      <button
+        class="btn up-button"
+        type="submit"
+        (click)="submit(paymentForm.invalid)"
+        [disabled]="paymentForm.invalid"
+      >
+        {{ isEdit ? 'Update' : 'Save' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,32 @@
+.app-home {
+  min-height: 67vh;
+  .banner {
+    // background: url('/assets/images/Banner_Agriculture.jpg');
+    width: 100%;
+    height: 400px;
+    background-size: cover !important;
+    background-position: center !important;
+    &-fill {
+      background-color: rgba(#333333, 0.6);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h1 {
+        color: #fff;
+      }
+    }
+  }
+  .chat-section {
+    min-height: 300px;
+  }
+  .products {
+    p {
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 40px;
+      margin-bottom: 50px;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="product-list">
+  <div class="container">
+    <h3 class="text-center" *ngIf="searchInput">
+      Result for '{{ searchInput }}'
+    </h3>
+    <h3 class="text-center" *ngIf="productType">By Categories</h3>
+    <div class="products-right">
+      <div class="agile_top_brands_grids row">
+        <div
+          class="col-md-4 top_brand_left"
+          *ngFor="let product of productList"
+        >
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+              <div class="agile_top_brand_left_grid1">
+                <figure>
+                  <div class="snipcart-item block">
+                    <div class="snipcart-thumb">
+                      <a routerLink="/product/{{ product.id }}"
+                        ><img title=" " alt=" " [src]="product.image"
+                      /></a>
+                      <p>{{ product.name }}</p>
+                      <h4>{{ product.price | currency: '₱' }}</h4>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details">
+                      <form>
+                        <fieldset>
+                          <input
+                            type="submit"
+                            name="submit"
+                            value="Add to cart"
+                            class="button"
+                            (click)="
+                              addToCart(+product.id, +product.businessId)
+                            "
+                          />
+                        </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

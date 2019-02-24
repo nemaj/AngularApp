@@ -1,0 +1,29 @@
+.admin-header {
+  display: block;
+  background: #fe9126;
+  height: 50px;
+  line-height: 50px;
+  .sidebar-toggle {
+    float: left;
+    padding: 0 15px;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      background: #e2801f;
+    }
+    i {
+      color: #fff;
+    }
+  }
+  .logout,
+  .settings {
+    float: right;
+    color: #fff;
+    font-size: 14px;
+    margin-right: 15px;
+    cursor: pointer;
+    &:hover {
+      color: #efefef;
+    }
+  }
+}

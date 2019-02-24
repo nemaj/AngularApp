@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'style-modules/modals';
+@import 'style-modules/forms';
+@import 'style-modules/tabs';
+
+body {
+  // background: #f5f7fa;
+}
+
+.main-content {
+  min-height: 78vh;
+}
+
+.svg-logo-size svg {
+  width: 60px;
+  height: 60px;
+}

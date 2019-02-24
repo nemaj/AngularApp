@@ -1,0 +1,24 @@
+.chart-report {
+  position: relative;
+  .title {
+    display: flex;
+    margin-bottom: 10px;
+    span {
+      flex-grow: 1;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+  .chart-wrapper {
+    position: absolute;
+    right: 0;
+    width: 1200px;
+    opacity: 0;
+  }
+
+  @media (max-width: 575px) {
+    .btn-print {
+      display: none;
+    }
+  }
+}

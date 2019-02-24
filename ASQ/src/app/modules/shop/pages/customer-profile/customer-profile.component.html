@@ -1,0 +1,32 @@
+<div class="profile">
+  <div class="container">
+    <div class="header-info">
+      <h3 class="text-center">
+        My Profile
+      </h3>
+      <p>
+        <a (click)="editProfile()">Edit Info</a>
+      </p>
+    </div>
+    <div class="info">
+      <p>
+        Name:
+      </p>
+      <p class="info-value">
+        {{ usersInfo?.firstName + ' ' + usersInfo?.lastName }}
+      </p>
+      <p>
+        Address:
+      </p>
+      <p class="info-value">
+        {{
+          usersInfo?.street +
+            ', ' +
+            usersInfo?.barangay +
+            ', ' +
+            usersInfo?.city
+        }}
+      </p>
+    </div>
+  </div>
+</div>

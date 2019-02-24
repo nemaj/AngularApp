@@ -1,0 +1,57 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">Create Activity</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <form #activityForm="ngForm" (submit)="submit(activityForm.invalid)">
+    <div class="up-modal-body activity-forms">
+      <div class="up-input">
+        <label>Activity Start:</label>
+        <input
+          type="text"
+          name="date"
+          [ngModel]="date | date: 'dd-MM-yyyy'"
+          disabled="true"
+        />
+      </div>
+      <div class="up-input">
+        <label>Activity End:</label>
+        <input type="date" name="end" [(ngModel)]="end" />
+      </div>
+      <div class="up-input">
+        <label>Activity Title:</label>
+        <textarea
+          id="title"
+          name="title"
+          [(ngModel)]="title"
+          #activityTitle="ngModel"
+          placeholder="Please enter activity title"
+          rows="5"
+          required
+        ></textarea>
+        <span
+          class="error"
+          *ngIf="
+            activityTitle.invalid &&
+            (activityTitle.dirty || activityTitle.touched)
+          "
+        >
+          *This field is required
+        </span>
+      </div>
+    </div>
+    <div class="up-modal-footer">
+      <button class="btn btn-default" (click)="close()">Cancel</button>
+      <button
+        class="btn up-button"
+        type="submit"
+        [disabled]="activityForm.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

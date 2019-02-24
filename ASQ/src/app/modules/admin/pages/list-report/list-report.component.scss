@@ -1,0 +1,57 @@
+.list-report {
+  .card {
+    position: relative;
+    .title {
+      margin-top: 15px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .btn-print {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .table-header {
+      position: relative;
+      .btn-print {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+    .table {
+      tbody tr td {
+        p {
+          max-width: 400px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        @media (max-width: 991px) {
+          p {
+            max-width: 200px;
+          }
+        }
+
+        @media (max-width: 399px) {
+          p {
+            max-width: 175px;
+          }
+        }
+
+        @media (max-width: 368px) {
+          p {
+            max-width: 150px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 575px) {
+      .btn-print {
+        display: none;
+      }
+    }
+  }
+}

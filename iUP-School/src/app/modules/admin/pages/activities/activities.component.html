@@ -1,0 +1,9 @@
+<div *ngIf="calendarOptions">
+  <ng-fullcalendar
+    #ucCalendar
+    [options]="calendarOptions"
+    (eventClick)="viewEvent($event.detail)"
+    (dayClick)="selectEvent($event.detail)"
+  ></ng-fullcalendar>
+  {{ selectedDate }}
+</div>

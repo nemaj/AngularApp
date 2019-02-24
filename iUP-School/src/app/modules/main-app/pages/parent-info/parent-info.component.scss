@@ -1,0 +1,61 @@
+.parent-info {
+  .parent-details {
+    .single-blog-post {
+      position: relative;
+      .btn-edit {
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 20px;
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+          color: #69bc5f;
+        }
+      }
+      .post-title {
+        color: #141414;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .parent-form {
+    form {
+      margin: auto;
+      background: #fff;
+      padding: 20px 25px;
+      width: 350px;
+      box-shadow: 0 5px 40px rgba(0, 0, 0, 0.2);
+      .form-label {
+        font-weight: 600;
+        margin-bottom: 0;
+        display: block;
+      }
+      .btn-group {
+        margin-bottom: 10px;
+        .custom-radio {
+          &:first-child {
+            margin-right: 10px;
+          }
+          label {
+            padding-top: 2px;
+          }
+        }
+      }
+      .buttons {
+        display: flex;
+        padding-top: 10px;
+        .btn-default {
+          margin-right: 10px;
+          border-color: #888888;
+          opacity: 0.8;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

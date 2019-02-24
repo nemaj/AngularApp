@@ -1,0 +1,19 @@
+ul.breadcrumb {
+  background-color: transparent;
+  li {
+    display: inline-block;
+    a {
+      font-weight: bold;
+    }
+    span.fa {
+      padding-right: 5px;
+      font-size: 18px;
+    }
+  }
+  li + li:before {
+    padding: 0 5px;
+    padding-left: 10px;
+    color: #ccc;
+    content: '/\00a0';
+  }
+}

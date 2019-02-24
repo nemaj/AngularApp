@@ -1,0 +1,195 @@
+<div class="app-header">
+  <div class="agileits_header">
+    <div class="container">
+      <!--
+        <div class="w3l_offers">
+          <p>
+            SALE UP TO 70% OFF. USE CODE "SALE70%" .
+            <a href="products.html">SHOP NOW</a>
+          </p>
+        </div>
+      -->
+      <div class="agile-login">
+        <ul>
+          <li ngbDropdown class="dropdown" *ngIf="isCustomer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="dropdownBasic1"
+              ngbDropdownToggle
+            >
+              {{ customerInfo?.firstName + ' ' + customerInfo?.lastName }}
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" routerLink="/profile">
+                <i class="fa fa-user-circle"></i> Profile
+              </button>
+              <button class="dropdown-item" routerLink="/orders">
+                <i class="fa fa-folder-open"></i> View Orders
+              </button>
+              <button class="dropdown-item" (click)="logout()">
+                <i class="fa fa-power-off"></i> Logout
+              </button>
+            </div>
+          </li>
+          <li *ngIf="!isLogin">
+            <a routerLink="/login/create"> Create Account </a>
+          </li>
+          <li *ngIf="!isLogin"><a routerLink="/login">Login</a></li>
+        </ul>
+      </div>
+      <div class="agile-login right">
+        <ul>
+          <li class="cart" *ngIf="isCustomer">
+            <a routerLink="/cart"> <i class="fa fa-cart-arrow-down"></i> </a>
+          </li>
+          <li
+            ngbDropdown
+            placement="bottom-right"
+            class="dropdown"
+            *ngIf="isSupplier"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              id="dropdownBasic1"
+              ngbDropdownToggle
+            >
+              {{ supplierName }}
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" routerLink="/business">
+                <i class="fa fa-user-circle"></i> Profile
+              </button>
+              <button class="dropdown-item" routerLink="/list-orders">
+                <i class="fa fa-folder-open"></i> View Orders
+              </button>
+              <button class="dropdown-item" routerLink="/chat">
+                <i class="fa fa-comments"></i> Messages
+              </button>
+              <button class="dropdown-item" (click)="logout()">
+                <i class="fa fa-power-off"></i> Logout
+              </button>
+            </div>
+          </li>
+          <li
+            ngbDropdown
+            placement="bottom-right"
+            class="dropdown"
+            *ngIf="isAdmin"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              id="dropdownBasic1"
+              ngbDropdownToggle
+            >
+              Admin
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" routerLink="/admin">
+                <i class="fa fa-user-circle"></i> Admin Page
+              </button>
+              <button class="dropdown-item" (click)="logout()">
+                <i class="fa fa-power-off"></i> Logout
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="logo_products">
+    <div class="container">
+      <div class="w3ls_logo_products_left1">
+        <ul class="phone_email">
+          <li>
+            <i class="fa fa-phone" aria-hidden="true"></i>Order online or call
+            us : (+0123) 234 567
+          </li>
+        </ul>
+      </div>
+      <div class="w3ls_logo_products_left">
+        <h1><a routerLink="/">ASQ Shop</a></h1>
+      </div>
+      <div class="w3l_search">
+        <div class="input-group mb-3">
+          <button class="btn btn-browse" (click)="browseProduct()">
+            <i class="fa fa-search"></i> Browse Product
+          </button>
+          <!-- <input
+            type="text"
+            class="form-control"
+            placeholder="Search for a Product..."
+            aria-describedby="basic-search"
+            name="searchInput"
+            [(ngModel)]="searchInput"
+            (keydown)="keySearch($event)"
+          />
+          <div class="input-group-append">
+            <span
+              class="input-group-text search-icon"
+              id="basic-search"
+              (click)="searchProduct()"
+            >
+              <i class="fa fa-search" aria-hidden="true"> </i>
+            </span>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!-- //header -->
+  <!-- navigation -->
+  <div class="navigation-agileits">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <button
+          class="navbar-toggler ml-auto hidden-sm-up float-xs-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="/">Home </a>
+            </li>
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle nav-link"
+                data-toggle="dropdown"
+                >Categories<b class="caret"></b
+              ></a>
+              <ul class="dropdown-menu multi-column columns-3">
+                <div class="row">
+                  <div class="multi-gd-img">
+                    <ul class="multi-column-dropdown">
+                      <h6>All Categories</h6>
+                      <li *ngFor="let type of types">
+                        <a routerLink="/products/{{ type.id }}">
+                          {{ type.type }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </ul>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="isSupplier">
+              <a class="nav-link" routerLink="/reports">Reports </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

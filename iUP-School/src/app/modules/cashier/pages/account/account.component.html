@@ -1,0 +1,66 @@
+<div class="paybills">
+  <h4 class="text-center mb-2">Account</h4>
+  <div class="info">
+    <label>Name: </label>
+    <p>
+      {{
+        pupilInfo?.lastName +
+          ', ' +
+          pupilInfo?.firstName +
+          ' ' +
+          pupilInfo?.middleName
+      }}
+    </p>
+  </div>
+  <div class="info">
+    <label>Grade level: </label>
+    <p>{{ pupilInfo?.level }}</p>
+  </div>
+  <div class="info">
+    <label>Month: </label>
+    <p>{{ month }}</p>
+  </div>
+  <div class="details">
+    <div class="check">
+      <p></p>
+      <p *ngFor="let item of details; let idx = index">
+        <input
+          type="checkbox"
+          name="pay-{{ idx }}"
+          [(ngModel)]="item.checked"
+          [disabled]="item.paid"
+          (ngModelChange)="checkItem(item)"
+        />
+      </p>
+      <p></p>
+    </div>
+    <div class="particular">
+      <p class="text-center text-bold">Particular</p>
+      <p *ngFor="let item of accountDetails">{{ item.name }}</p>
+      <p class="text-bold">TOTAL</p>
+    </div>
+    <div class="amount">
+      <p class="text-center text-bold">Amount</p>
+      <p class="amount-input" *ngFor="let item of details; let idx = index">
+        <span class="amount-label">
+          {{
+            !item.paid ? '(' + item.price + ')' : 'paid (' + item.original + ')'
+          }}
+        </span>
+        <input
+          type="number"
+          class="p-input"
+          name="amount-{{ idx }}"
+          [(ngModel)]="item.amount"
+          [disabled]="item.checked || item.paid"
+          (ngModelChange)="onChange(item, $event)"
+        />
+      </p>
+      <p class="text-center text-bold total">{{ totalAmount }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="buttons">
+  <button class="btn up-button" (click)="payNow()">Pay Now</button>
+</div>

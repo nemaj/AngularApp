@@ -1,0 +1,112 @@
+<div
+  class="breadcumb-area bg-img"
+  style="background-image: url(assets/img/bg-img/breadcumb.jpg);"
+>
+  <div class="bradcumbContent"><h2>Parent Portal</h2></div>
+</div>
+<div class="parent-portal section-padding-100">
+  <div class="container">
+    <div class="up-tabs">
+      <tabset [justified]="true">
+        <tab heading="Pupil's">
+          <div class="tab-pupil">
+            <div class="up-input search">
+              <input
+                type="text"
+                placeholder="Find Pupil..."
+                name="searchInput"
+                [(ngModel)]="searchInput"
+                (ngModelChange)="find($event)"
+              />
+              <div class="search-contianer" *ngIf="isDoneSearch && searchInput">
+                <p *ngFor="let res of searchResult" (click)="selectPupil(res)">
+                  {{
+                    res.lastName + ', ' + res.firstName + ' ' + res.middleName
+                  }}
+                </p>
+              </div>
+            </div>
+            <div class="grade-details" *ngIf="selectedPupilId">
+              <p>
+                Name:
+                <span>{{
+                  selectedPupil?.lastName +
+                    ', ' +
+                    selectedPupil?.firstName +
+                    ' ' +
+                    selectedPupil?.middleName
+                }}</span>
+              </p>
+              <p>
+                Grade:
+                <span>{{ selectedPupil?.level }}</span>
+              </p>
+              <div class="grade-table">
+                <div class="grade-header">
+                  <p>Learning Areas</p>
+                  <div>
+                    <p>Periodic Rating</p>
+                    <div>
+                      <span>1</span>
+                      <span>2</span>
+                      <span>3</span>
+                      <span>4</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="grade-body" *ngFor="let grade of pupilGrades">
+                  <p>{{ grade.subject }}</p>
+                  <span>{{ grade.one }}</span>
+                  <span>{{ grade.two }}</span>
+                  <span>{{ grade.three }}</span>
+                  <span>{{ grade.four }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Schedules">
+          <div class="tab-schedule">
+            <div class="select up-input">
+              <select
+                class="form-control"
+                name="classLevel"
+                [(ngModel)]="classLevel"
+                (change)="getSchedules()"
+              >
+                <option value="" selected disabled>Select Class</option>
+                <option *ngFor="let lvl of levelList" [value]="lvl.id">
+                  {{ lvl.level }}
+                </option>
+              </select>
+            </div>
+            <div class="schedules" *ngFor="let item of classSchedules">
+              <p class="day">- {{ item.day }}</p>
+              <div class="schedule" *ngFor="let sched of item.schedules">
+                <p class="areas">{{ sched.areas }}</p>
+                <p class="time">
+                  {{ sched.start | date: 'mediumTime' }} -
+                  {{ sched.end | date: 'mediumTime' }}
+                  <b>({{ sched.duration + ' mins' }})</b>
+                </p>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Materials">
+          <div class="tab-material">
+            <div
+              class="material"
+              *ngFor="let item of materials"
+              (click)="download(item)"
+            >
+              <p class="name">{{ item.name }}</p>
+              <p class="type">{{ item.type }}</p>
+              <span class="fa fa-download"></span>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

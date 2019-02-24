@@ -1,0 +1,111 @@
+<div class="enroll admin-tabs">
+  <tabset [justified]="true">
+    <tab heading="Enrolled">
+      <button class="btn btn-success btn-add mt-4 mb-1" (click)="addPupil()">
+        Enroll Pupil
+      </button>
+      <div class="card strpied-tabled-with-hover mt-1">
+        <div class="card-body">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th style="width:17px;">No.</th>
+                <th width="40%">Pupil Name</th>
+                <!-- <th class="d-none d-sm-none d-md-table-cell">Age</th> -->
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Gender
+                </th>
+                <th width="20%" class="d-none d-sm-none d-md-table-cell">
+                  Grade Level
+                </th>
+                <th width="30%" class="d-none d-sm-none d-md-table-cell">
+                  Guardian
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of enrolledList; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ item.lastName + ', ' + item.firstName }}</td>
+                <th
+                  class="d-none d-sm-none d-md-table-cell"
+                  style="font-weight: normal;"
+                >
+                  {{ item.gender }}
+                </th>
+                <th
+                  class="d-none d-sm-none d-md-table-cell"
+                  style="font-weight: normal;"
+                >
+                  {{ item.level }}
+                </th>
+                <th
+                  class="d-none d-sm-none d-md-table-cell"
+                  style="font-weight: normal;"
+                >
+                  {{ item.parentName }}
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Pre Enroll">
+      <div class="card strpied-tabled-with-hover mt-4">
+        <div class="card-body">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th style="width:17px;">No.</th>
+                <th width="40%">Pupil Name</th>
+                <!-- <th class="d-none d-sm-none d-md-table-cell">Age</th> -->
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Gender
+                </th>
+                <th width="20%" class="d-none d-sm-none d-md-table-cell">
+                  Grade Level
+                </th>
+                <th width="30%" class="d-none d-sm-none d-md-table-cell">
+                  Guardian
+                </th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of preEnrollList; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ item.lastName + ', ' + item.firstName }}</td>
+                <th
+                  class="d-none d-sm-none d-md-table-cell"
+                  style="font-weight: normal;"
+                >
+                  {{ item.gender }}
+                </th>
+                <th
+                  class="d-none d-sm-none d-md-table-cell"
+                  style="font-weight: normal;"
+                >
+                  {{ item.level }}
+                </th>
+                <th
+                  class="d-none d-sm-none d-md-table-cell"
+                  style="font-weight: normal;"
+                >
+                  {{ item.parentName }}
+                </th>
+                <td class="action">
+                  <span
+                    class="fa fa-check-square-o"
+                    (click)="enrolled(item)"
+                    title="Enroll Pupil"
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>

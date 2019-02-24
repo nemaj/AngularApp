@@ -1,0 +1,47 @@
+<div class="row admin-teachers">
+  <div class="col-md-6 offset-md-3">
+    <up-search
+      placeholder="Find Teacher..."
+      [data]="teacherList"
+      (getValue)="getSelected($event)"
+    ></up-search>
+  </div>
+
+  <div class="col-md-12 pt-3" *ngIf="showInfo">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title text-center">
+          Teacher Info
+          <button class="btn btn-success card-button" (click)="addInfo()">
+            Manage Info
+          </button>
+        </h4>
+      </div>
+      <div class="card-body info">
+        <p>
+          First Name: <b>{{ teacherInfo?.firstName }}</b>
+        </p>
+        <p>
+          Last Name: <b>{{ teacherInfo?.lastName }}</b>
+        </p>
+        <div *ngIf="moreInfo?.isHasInfo">
+          <p>
+            Gender: <b>{{ moreInfo?.gender }}</b>
+          </p>
+          <p>
+            Advisory: <b>{{ moreInfo?.levelDesc }}</b>
+          </p>
+          <p>
+            Email: <b>{{ moreInfo?.email }}</b>
+          </p>
+          <p>
+            Address: <b>{{ moreInfo?.address }}</b>
+          </p>
+          <p>
+            Contact: <b>{{ moreInfo?.contact }}</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

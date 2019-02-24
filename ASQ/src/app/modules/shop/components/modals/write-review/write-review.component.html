@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Write Product Review</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form #userForm="ngForm" (submit)="submitReview()">
+  <div class="modal-body write-review">
+    <div class="product-preview">
+      <img [src]="productDetails?.image" />
+      <div class="details">
+        <p>{{ productDetails?.name }}</p>
+        <app-rating
+          (getRate)="_getRate($event)"
+          rate="{{ productRate }}"
+          [readonly]="false"
+        ></app-rating>
+      </div>
+    </div>
+    <div class="review">
+      <label>Review Details</label>
+      <textarea name="review" [(ngModel)]="review" rows="4"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!isFormFilled()">
+      {{ isReviewed ? 'Update' : 'Submit' }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Manage Business Logo</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form #userForm="ngForm">
+  <div class="modal-body business-logo">
+    <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper
+    ><br />
+    <img
+      *ngIf="data.image"
+      [src]="data.image"
+      [width]="cropperSettings.croppedWidth"
+      [height]="cropperSettings.croppedHeight"
+    />
+  </div>
+  <div class="modal-footer">
+    <button type="submit" (click)="saveLogo()" class="btn btn-primary">
+      Save Logo
+    </button>
+  </div>
+</form>

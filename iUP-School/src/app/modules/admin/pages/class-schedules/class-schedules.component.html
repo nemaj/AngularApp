@@ -1,0 +1,60 @@
+<div class="row class-schedules">
+  <div class="col-md-12">
+    <div class="card strpied-tabled-with-hover">
+      <div class="card-header ">
+        <h4 class="card-title">Class Programs</h4>
+        <div class="select text-center">
+          <select
+            class="form-control"
+            name="classLevel"
+            [(ngModel)]="classLevel"
+            (change)="getSchedules()"
+          >
+            <option value="" selected disabled>Select Class</option>
+            <option *ngFor="let lvl of levelList" [value]="lvl.id">
+              {{ lvl.level }}
+            </option>
+          </select>
+        </div>
+        <div class="button">
+          <button
+            class="btn btn-success card-button"
+            [disabled]="!classLevel"
+            (click)="addSchedule()"
+          >
+            Add Schedule
+          </button>
+        </div>
+      </div>
+      <div class="card-body" *ngFor="let class of classSchedules">
+        <h4 class="day">{{ class.day }}</h4>
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th width="40%">Time</th>
+              <th width="30%" class="d-none d-sm-none d-md-table-cell">
+                Minutes
+              </th>
+              <th width="30%">Areas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let sched of class.schedules; let idx = index"
+              (click)="viewDetails(sched.id)"
+            >
+              <td>
+                {{ sched.start | date: 'mediumTime' }} -
+                {{ sched.end | date: 'mediumTime' }}
+              </td>
+              <td class="d-none d-sm-none d-md-table-cell">
+                {{ sched.duration }}
+              </td>
+              <td>{{ sched.areas }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

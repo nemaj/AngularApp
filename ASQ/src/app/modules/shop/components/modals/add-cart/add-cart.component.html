@@ -1,0 +1,53 @@
+<div class="modal-header add-cart">
+  <h4 class="modal-title pull-left">
+    <div class="img-preview"><img [src]="productDetails?.image" /></div>
+    <div class="info">
+      <span class="price">{{ productDetails?.price | currency: '₱' }}</span>
+      <span class="stock">Stock: {{ productDetails?.stock }}</span>
+    </div>
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body add-cart">
+  <div class="quantity">
+    <div class="quantity-label">Quantity:</div>
+    <div class="quantity-control">
+      <span
+        class="minus"
+        [ngClass]="{
+          disabled: isButtonDisabled(+productDetails?.stock, 'minus')
+        }"
+        (click)="manageQuantity('minus')"
+      >
+        <i class="fa fa-minus"></i>
+      </span>
+      <span class="q-value">{{ quantity }}</span>
+      <span
+        class="plus"
+        [ngClass]="{
+          disabled: isButtonDisabled(+productDetails?.stock, 'plus')
+        }"
+        (click)="manageQuantity('plus')"
+      >
+        <i class="fa fa-plus"></i>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="productUnavailable()"
+    (click)="addProduct()"
+  >
+    {{ productUnavailable() ? 'Out of Stock' : 'Add to Cart' }}
+  </button>
+</div>

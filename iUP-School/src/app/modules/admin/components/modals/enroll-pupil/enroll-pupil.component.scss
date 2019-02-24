@@ -1,0 +1,18 @@
+.enroll-pupils {
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 0;
+    display: block;
+  }
+  .btn-group {
+    margin-bottom: 10px;
+    .custom-radio {
+      &:first-child {
+        margin-right: 10px;
+      }
+      label {
+        padding-top: 2px;
+      }
+    }
+  }
+}

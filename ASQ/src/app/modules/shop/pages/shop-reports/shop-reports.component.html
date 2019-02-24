@@ -1,0 +1,202 @@
+<div class="reports">
+  <div class="container">
+    <h3 class="text-center">
+      Reports
+    </h3>
+
+    <h3 class="text-center mt-2" *ngIf="!isAllow">
+      Can't access! Please complete your information.
+    </h3>
+    <div class="content" *ngIf="isAllow">
+      <div class="forms">
+        <select
+          id="reports"
+          name="reports"
+          [(ngModel)]="reports"
+          (ngModelChange)="getType($event)"
+          class="frm-field required sect"
+        >
+          <option value="" selected disabled>
+            Select Type of Reports
+          </option>
+          <option value="1"> Collection Reports </option>
+          <option value="2"> Products Reports </option>
+          <option value="3"> Orders Reports </option>
+          <option value="4"> Feedback Reports </option>
+        </select>
+      </div>
+      <div class="card" *ngIf="reports === '1'">
+        <h3 class="title">List of Collection</h3>
+        <button
+          class="btn btn-print"
+          (click)="printListCollection(listCollection?.orders)"
+        >
+          <i class="fa fa-print"></i> Print
+        </button>
+        <div class="card-body">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <!-- <th class="d-none d-sm-table-cell">Code</th> -->
+                <th width="30%">Product</th>
+                <th width="20%" class="d-none d-sm-none d-md-table-cell">
+                  Date
+                </th>
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Price
+                </th>
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Quantity
+                </th>
+                <th width="10%">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listCollection.orders">
+                <!-- <td class="d-none d-sm-table-cell">{{ item.code }}</td> -->
+                <td>
+                  <p>{{ item.productName }}</p>
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.date }}
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.productPrice }}
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.quantity }}
+                </td>
+                <td>{{ item.totalPrice }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" *ngIf="reports === '2'">
+        <h3 class="title">List of Products</h3>
+        <button class="btn btn-print" (click)="printProductList()">
+          <i class="fa fa-print"></i> Print
+        </button>
+        <div class="card-body">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <!-- <th class="d-none d-sm-table-cell">Code</th> -->
+                <th width="40%">Product</th>
+                <th width="20%" class="d-none d-sm-none d-md-table-cell">
+                  Type
+                </th>
+                <th width="10%">Price</th>
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Stock
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listProduct">
+                <!-- <td class="d-none d-sm-table-cell">{{ item.code }}</td> -->
+                <td>
+                  <p>{{ item.name }}</p>
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.type }}
+                </td>
+                <td>
+                  {{ item.price }}
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.stock }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" *ngIf="reports === '3'">
+        <h3 class="title">List of Orders</h3>
+        <button class="btn btn-print" (click)="printListOrders()">
+          <i class="fa fa-print"></i> Print
+        </button>
+        <div class="card-body" *ngFor="let list of listOrder">
+          <div class="table-header">
+            <span class="title">{{ list.code }}</span>
+            <small class="ml-2">({{ list.date }})</small>
+          </div>
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <!-- <th class="d-none d-sm-table-cell">Code</th> -->
+                <th width="50%">Product</th>
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Price
+                </th>
+                <th width="10%" class="d-none d-sm-none d-md-table-cell">
+                  Quantity
+                </th>
+                <th width="10%">
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of list.orders">
+                <!-- <td class="d-none d-sm-table-cell">{{ item.code }}</td> -->
+                <td>
+                  <p>{{ item.productName }}</p>
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.productPrice }}
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.quantity }}
+                </td>
+                <td>
+                  {{ item.totalPrice }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" *ngIf="reports === '4'">
+        <h3 class="title">List of Feedback</h3>
+        <button class="btn btn-print" (click)="printListFeedback()">
+          <i class="fa fa-print"></i> Print
+        </button>
+        <div class="card-body" *ngFor="let list of listFeedback">
+          <div class="table-header">
+            <span class="title">{{ list.productName }}</span>
+          </div>
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <!-- <th class="d-none d-sm-table-cell">Code</th> -->
+                <th width="20%">Customer Name</th>
+                <th width="50%" class="d-none d-sm-none d-md-table-cell">
+                  Message
+                </th>
+                <th width="10%">
+                  Rate
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of list.feedback">
+                <!-- <td class="d-none d-sm-table-cell">{{ item.code }}</td> -->
+                <td>
+                  <p>{{ item.userName }}</p>
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">
+                  {{ item.message }}
+                </td>
+                <td>
+                  {{ item.rate }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

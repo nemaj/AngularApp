@@ -1,0 +1,65 @@
+<div class="login">
+  <div class="container">
+    <h2>Login Form</h2>
+
+    <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+      <form #loginForm="ngForm" (submit)="login(loginForm.invalid)">
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          #loginUsername="ngModel"
+          placeholder="Username"
+          required
+        />
+        <small
+          *ngIf="
+            loginUsername.invalid &&
+            (loginUsername.dirty || loginUsername.touched) &&
+            loginUsername.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          #loginPassword="ngModel"
+          placeholder="Password"
+          required
+        />
+        <small
+          *ngIf="
+            loginPassword.invalid &&
+            (loginPassword.dirty || loginPassword.touched) &&
+            loginPassword.errors.required
+          "
+          class="form-text text-danger"
+        >
+          This field is required.
+        </small>
+        <small
+          *ngIf="
+            loginPassword.invalid &&
+            (loginPassword.dirty || loginPassword.touched) &&
+            loginPassword.errors.incorrect
+          "
+          class="form-text text-danger"
+        >
+          Username or Password is incorrect.
+        </small>
+        <!-- <div class="forgot"><a href="#">Forgot Password?</a></div> -->
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+    <p class="mt-3">
+      <a routerLink="create">Register Here</a> (Or) go back to
+      <a routerLink="/">
+        Home
+        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span
+      ></a>
+    </p>
+  </div>
+</div>

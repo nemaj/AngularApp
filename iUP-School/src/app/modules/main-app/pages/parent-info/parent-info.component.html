@@ -1,0 +1,141 @@
+<div
+  class="breadcumb-area bg-img"
+  style="background-image: url(assets/img/bg-img/breadcumb.jpg);"
+>
+  <div class="bradcumbContent"><h2>Parent Info</h2></div>
+</div>
+<div class="parent-info section-padding-100">
+  <div class="container">
+    <div class="parent-details row" *ngIf="!openForm">
+      <div class="col-12">
+        <div class="academy-blog-posts">
+          <div class="row">
+            <div class="col-12">
+              <div
+                class="single-blog-post mb-50 wow fadeInUp"
+                data-wow-delay="300ms"
+                style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;"
+              >
+                <a class="btn-edit" (click)="editInfo()">
+                  <i class="fa fa-pencil-square-o"></i>
+                </a>
+                <p class="post-title">
+                  {{ userDetails?.firstName + ' ' + userDetails?.lastName }}
+                </p>
+                <div class="post-meta">
+                  <p>
+                    <a>{{ userDetails?.info.email }}</a> |
+                    <a>{{ userDetails?.info.gender }}</a>
+                  </p>
+                </div>
+                <p>Address: {{ userDetails?.info.address }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parent-form" *ngIf="openForm">
+      <form [formGroup]="parentForm" (submit)="saveInfo(parentForm.invalid)">
+        <h5>Parent Form</h5>
+        <div class="up-input">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            [value]="userDetails?.firstName"
+            disabled
+          />
+        </div>
+        <div class="up-input">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            [value]="userDetails?.lastName"
+            disabled
+          />
+        </div>
+        <div class="up-input">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" formControlName="email" />
+          <span
+            class="error"
+            *ngIf="
+              controls.email.invalid &&
+              (controls.email.dirty || controls.email.touched) &&
+              controls.email.errors.required
+            "
+          >
+            *This field is required
+          </span>
+          <span
+            class="error"
+            *ngIf="
+              controls.email.invalid &&
+              (controls.email.dirty || controls.email.touched) &&
+              controls.email.errors.email
+            "
+          >
+            *Invalid email address
+          </span>
+        </div>
+        <label class="form-label">Gender</label>
+        <div class="btn-group">
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              class="custom-control-input"
+              id="male"
+              name="gender"
+              formControlName="gender"
+              value="Male"
+            />
+            <label class="custom-control-label" for="male"> Male </label>
+          </div>
+
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              class="custom-control-input"
+              id="female"
+              name="gender"
+              formControlName="gender"
+              value="Female"
+            />
+            <label class="custom-control-label" for="female"> Female </label>
+          </div>
+        </div>
+        <div class="up-input">
+          <label for="address">Address</label>
+          <textarea
+            name="address"
+            formControlName="address"
+            id="address"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="up-input">
+          <label for="contact">Contact</label>
+          <input
+            type="text"
+            id="contact"
+            name="contact"
+            formControlName="contact"
+          />
+        </div>
+        <div class="buttons">
+          <button class="btn btn-default" *ngIf="isUpdate" (click)="editInfo()">
+            Cancel
+          </button>
+          <button class="btn up-button " [disabled]="parentForm.invalid">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

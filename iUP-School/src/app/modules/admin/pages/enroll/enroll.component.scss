@@ -1,0 +1,14 @@
+.enroll {
+  .action {
+    .fa {
+      cursor: pointer;
+      opacity: 0.7;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .btn-add {
+    width: 150px;
+  }
+}

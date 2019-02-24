@@ -1,0 +1,336 @@
+<div class="breadcrumbs">
+  <div class="container">
+    <ul
+      class="breadcrumb breadcrumb1 animated wow slideInLeft"
+      data-wow-delay=".5s"
+    >
+      <li>
+        <a routerLink="/">
+          <span class="fa fa-home" aria-hidden="true"></span> Home
+        </a>
+      </li>
+      <li class="active">Business Infomation</li>
+    </ul>
+  </div>
+</div>
+<div class="supplier container">
+  <tabset class="custom-tabs" #supplierTabs>
+    <tab>
+      <ng-template tabHeading> All Products </ng-template>
+
+      <div class="products-right">
+        <div class="products-right-grid">
+          <div class="products-right-grids row">
+            <div class="col-6 col-md-8 col-lg-9 float-left register-home">
+              <a
+                (click)="addProduct()"
+                *ngIf="!isAddProductOpen && canManageBusinessInfo"
+                >Add Product
+              </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+              <!-- <select
+                id="country"
+                onchange="change_country(this.value)"
+                class="frm-field required sect"
+                *ngIf="productList.length"
+              >
+                <option value="null">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i> Default
+                  sorting
+                </option>
+                <option value="null">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i> Sort by
+                  popularity
+                </option>
+                <option value="null">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i> Sort by
+                  average rating
+                </option>
+                <option value="null">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i> Sort by
+                  price
+                </option>
+              </select> -->
+            </div>
+          </div>
+        </div>
+        <div class="agile_top_brands_grids row" *ngIf="productList.length">
+          <div
+            class="col-md-4 top_brand_left"
+            [ngClass]="{ edit: canManageBusinessInfo }"
+            *ngFor="let product of productList"
+          >
+            <button
+              class="btn btn-outline-primary btn-sm btn-edit"
+              (click)="editProduct(product.id)"
+            >
+              <i class="fa fa-pencil"></i>
+            </button>
+            <div class="hover14 column">
+              <div class="agile_top_brand_left_grid">
+                <div class="agile_top_brand_left_grid1">
+                  <figure>
+                    <div class="snipcart-item block">
+                      <div class="snipcart-thumb">
+                        <a routerLink="/product/{{ product.id }}"
+                          ><img title=" " alt=" " [src]="product.image"
+                        /></a>
+                        <p>{{ product.name }}</p>
+                        <h4>{{ product.price | currency: '₱' }}</h4>
+                      </div>
+                      <div class="snipcart-details top_brand_home_details">
+                        <form action="#" method="post">
+                          <fieldset>
+                            <input type="hidden" name="cmd" value="_cart" />
+                            <input type="hidden" name="add" value="1" />
+                            <input type="hidden" name="business" value=" " />
+                            <input
+                              type="hidden"
+                              name="item_name"
+                              value="Fortune Sunflower Oil"
+                            />
+                            <input type="hidden" name="amount" value="35.99" />
+                            <input
+                              type="hidden"
+                              name="discount_amount"
+                              value="1.00"
+                            />
+                            <input
+                              type="hidden"
+                              name="currency_code"
+                              value="USD"
+                            />
+                            <input type="hidden" name="return" value=" " />
+                            <input
+                              type="hidden"
+                              name="cancel_return"
+                              value=" "
+                            />
+                            <input
+                              type="submit"
+                              name="submit"
+                              value="Add to cart"
+                              class="button"
+                            />
+                          </fieldset>
+                        </form>
+                      </div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab>
+      <ng-template tabHeading> Profile </ng-template>
+      <div class="profile">
+        <span
+          class="edit-button"
+          routerLink="/business-info"
+          *ngIf="canManageBusinessInfo"
+        >
+          <i class="fa fa-pencil"></i> Edit Profile
+        </span>
+        <div
+          class="image"
+          [ngClass]="{ disabled: !canManageBusinessInfo }"
+          [ngStyle]="{ 'background-image': 'url(' + businessInfo?.logo + ')' }"
+        >
+          <span class="initial" *ngIf="!businessInfo?.isLogoExist">S</span>
+          <div class="image-info" (click)="updateLogo()">Update</div>
+        </div>
+        <div class="details row">
+          <div class="col-md-12 products-left">
+            <div class="categories">
+              <h2>{{ businessInfo?.name }}</h2>
+              <ul class="cate">
+                <li>
+                  Address
+                  <i class="fa fa-arrow-right ml-1" aria-hidden="true"></i>
+                  {{ businessInfo?.address }}
+                </li>
+                <li>
+                  Contact Number
+                  <i class="fa fa-arrow-right ml-1" aria-hidden="true"></i>
+                  {{ businessInfo?.contactNumber }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab *ngIf="isAddProductOpen">
+      <ng-template tabHeading> Add Product </ng-template>
+      <div class="product-form row">
+        <div class="col-12 text-right controllers" *ngIf="isUploadFormReady">
+          <button class="btn btn-primary mr-2" (click)="saveProduct()">
+            Save Product
+          </button>
+          <button class="btn btn-default" (click)="cancel()">Cancel</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="image-uploader" *ngIf="isUploadFormReady">
+            <button class="btn btn-primary btn-add" (click)="addImage()">
+              Add Image
+            </button>
+
+            <div class="product-images row" *ngIf="productImages.length">
+              <div class="col-6 image" *ngFor="let img of productImages">
+                <button
+                  class="btn btn-outline-danger btn-sm image-btn"
+                  (click)="deleteImage(img.id)"
+                >
+                  <i class="fa fa-close"></i>
+                </button>
+                <img [src]="img.image" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="forms">
+            <h5>Product Details</h5>
+            <form
+              role="form"
+              #businessForm="ngForm"
+              (submit)="saveProductInfo(businessForm.invalid)"
+            >
+              <input
+                type="text"
+                class="form-field"
+                name="productName"
+                [(ngModel)]="productName"
+                #formName="ngModel"
+                placeholder="Product Name"
+                required
+              />
+              <small
+                *ngIf="
+                  formName.invalid &&
+                  (formName.dirty || formName.touched) &&
+                  formName.errors.required
+                "
+                class="form-text text-danger"
+              >
+                This field is required.
+              </small>
+
+              <select
+                class="form-field"
+                name="productType"
+                [(ngModel)]="productType"
+                #formType="ngModel"
+                required
+              >
+                <option value="" disabled selected>Product Type</option>
+                <option *ngFor="let type of types" [value]="type.id">{{
+                  type.type
+                }}</option>
+              </select>
+              <small
+                *ngIf="
+                  formType.invalid &&
+                  (formType.dirty || formType.touched) &&
+                  formType.errors.required
+                "
+                class="form-text text-danger"
+              >
+                This field is required.
+              </small>
+
+              <select
+                class="form-field"
+                name="productUnit"
+                [(ngModel)]="productUnit"
+                #formUnit="ngModel"
+                required
+              >
+                <option value="" disabled selected>Product Unit</option>
+                <option *ngFor="let item of units" [value]="item.id">{{
+                  item.unit
+                }}</option>
+              </select>
+              <small
+                *ngIf="
+                  formUnit.invalid &&
+                  (formUnit.dirty || formUnit.touched) &&
+                  formUnit.errors.required
+                "
+                class="form-text text-danger"
+              >
+                This field is required.
+              </small>
+
+              <textarea
+                class="form-field"
+                name="productDesc"
+                [(ngModel)]="productDesc"
+                #formDesc="ngModel"
+                rows="3"
+                placeholder="Product Description"
+                required
+              ></textarea>
+              <small
+                *ngIf="
+                  formDesc.invalid &&
+                  (formDesc.dirty || formDesc.touched) &&
+                  formDesc.errors.required
+                "
+                class="form-text text-danger"
+              >
+                This field is required.
+              </small>
+
+              <input
+                type="text"
+                class="form-field"
+                name="productPrice"
+                [(ngModel)]="productPrice"
+                #formPrice="ngModel"
+                placeholder="Price"
+                required
+              />
+              <small
+                *ngIf="
+                  formPrice.invalid &&
+                  (formPrice.dirty || formPrice.touched) &&
+                  formPrice.errors.required
+                "
+                class="form-text text-danger"
+              >
+                This field is required.
+              </small>
+
+              <input
+                type="text"
+                class="form-field"
+                name="productStock"
+                [(ngModel)]="productStock"
+                #formStock="ngModel"
+                placeholder="Number of Stock"
+                required
+              />
+              <small
+                *ngIf="
+                  formStock.invalid &&
+                  (formStock.dirty || formStock.touched) &&
+                  formStock.errors.required
+                "
+                class="form-text text-danger"
+              >
+                This field is required.
+              </small>
+
+              <input type="submit" value="Save Details" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>

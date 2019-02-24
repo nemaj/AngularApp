@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Manage Account</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form #userForm="ngForm">
+  <div class="modal-body add-type">
+    <div class="forms">
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="password">New Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            #formPassword="ngModel"
+            required
+          />
+          <small
+            *ngIf="
+              formPassword.invalid &&
+              (formPassword.dirty || formPassword.touched) &&
+              formPassword.errors.required
+            "
+            class="form-text text-danger"
+            >This field is required.</small
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="submit"
+      (click)="submit(userForm.invalid)"
+      class="btn btn-primary"
+    >
+      Save
+    </button>
+  </div>
+</form>
+<p></p>

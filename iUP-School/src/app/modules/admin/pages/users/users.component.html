@@ -1,0 +1,48 @@
+<div class="row admin-users">
+  <div class="col-md-12">
+    <div class="card strpied-tabled-with-hover">
+      <div class="card-header ">
+        <h4 class="card-title">User's List</h4>
+        <button class="btn btn-success card-button" (click)="addUser()">
+          Add User
+        </button>
+      </div>
+      <div class="card-body table-full-width">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th style="width:17px;">No.</th>
+              <th class="d-none d-sm-none d-md-table-cell">Last Name</th>
+              <th class="d-none d-sm-none d-md-table-cell">First Name</th>
+              <th>Username</th>
+              <th class="d-none d-sm-none d-md-table-cell">Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usersList; let idx = index">
+              <td>{{ idx + 1 }}</td>
+              <td class="d-none d-sm-none d-md-table-cell">
+                {{ user.lastName }}
+              </td>
+              <td class="d-none d-sm-none d-md-table-cell">
+                {{ user.firstName }}
+              </td>
+              <td>{{ user.username }}</td>
+              <td class="d-none d-sm-none d-md-table-cell">
+                {{ user.roleDesc }}
+              </td>
+              <td class="action">
+                <span
+                  class="fa fa-pencil-square-o"
+                  (click)="addUser(user.id)"
+                ></span>
+                <span class="fa fa-trash-o" (click)="deleteUser(user)"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

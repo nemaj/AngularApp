@@ -1,0 +1,150 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">Teacher Form</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <form [formGroup]="myForm">
+    <div class="up-modal-body teacher-info">
+      <div class="up-input">
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          [value]="teacher?.firstName"
+          disabled
+        />
+      </div>
+      <div class="up-input">
+        <label for="lname">Last Name</label>
+        <input
+          type="text"
+          id="lname"
+          name="lname"
+          [value]="teacher?.lastName"
+          disabled
+        />
+      </div>
+      <label class="form-label">Gender</label>
+      <div class="btn-group">
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="male"
+            name="gender"
+            formControlName="gender"
+            value="Male"
+          />
+          <label class="custom-control-label" for="male"> Male </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            class="custom-control-input"
+            id="female"
+            name="gender"
+            formControlName="gender"
+            value="Female"
+          />
+          <label class="custom-control-label" for="female"> Female </label>
+        </div>
+      </div>
+      <div class="select up-input">
+        <label for="address">Advisory</label>
+        <select class="form-control" name="level" formControlName="level">
+          <option *ngFor="let lvl of levelList" [value]="lvl.id">
+            {{ lvl.level }}
+          </option>
+        </select>
+        <span
+          class="error"
+          *ngIf="
+            controls.level.invalid &&
+            (controls.level.dirty || controls.level.touched) &&
+            controls.level.errors.required
+          "
+        >
+          *This field is required
+        </span>
+      </div>
+      <div class="up-input">
+        <label for="address">Address</label>
+        <textarea
+          name="address"
+          formControlName="address"
+          id="address"
+          rows="2"
+        ></textarea>
+        <span
+          class="error"
+          *ngIf="
+            controls.address.invalid &&
+            (controls.address.dirty || controls.address.touched) &&
+            controls.address.errors.required
+          "
+        >
+          *This field is required
+        </span>
+      </div>
+      <div class="up-input">
+        <label for="contact">Contact</label>
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          formControlName="contact"
+        />
+        <span
+          class="error"
+          *ngIf="
+            controls.contact.invalid &&
+            (controls.contact.dirty || controls.contact.touched) &&
+            controls.contact.errors.required
+          "
+        >
+          *This field is required
+        </span>
+      </div>
+      <div class="up-input">
+        <label for="contact">Email</label>
+        <input type="email" id="email" name="email" formControlName="email" />
+        <span
+          class="error"
+          *ngIf="
+            controls.email.invalid &&
+            (controls.email.dirty || controls.email.touched) &&
+            controls.email.errors.required
+          "
+        >
+          *This field is required
+        </span>
+        <span
+          class="error"
+          *ngIf="
+            controls.email.invalid &&
+            (controls.email.dirty || controls.email.touched) &&
+            controls.email.errors.email
+          "
+        >
+          *Invalid email address
+        </span>
+      </div>
+    </div>
+    <div class="up-modal-footer">
+      <button class="btn btn-default" (click)="close()">Cancel</button>
+      <button
+        class="btn up-button"
+        type="button"
+        (click)="submit(myForm.invalid)"
+        [disabled]="myForm.invalid"
+      >
+        {{ isEdit ? 'Update' : 'Submit' }}
+      </button>
+    </div>
+  </form>
+</div>

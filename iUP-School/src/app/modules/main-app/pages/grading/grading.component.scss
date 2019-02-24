@@ -1,0 +1,43 @@
+.grading {
+  .controls {
+    padding: 15px;
+    padding-bottom: 10px;
+    border: 1px solid #a9a9a9;
+    h3 {
+      font-size: 16px;
+    }
+    .forms {
+      display: flex;
+      .up-input {
+        width: 200px;
+        margin-right: 10px;
+      }
+      .button {
+        flex-grow: 1;
+        text-align: right;
+      }
+    }
+  }
+
+  .lists {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    h3 {
+      font-size: 20px;
+    }
+    .item {
+      cursor: pointer;
+      display: flex;
+      &:nth-child(even) {
+        background-color: rgba(#ccc, 0.5);
+      }
+      &:hover {
+        background-color: rgba(#ccc, 1);
+      }
+      .name {
+        padding: 10px;
+        flex-grow: 1;
+      }
+    }
+  }
+}

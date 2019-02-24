@@ -1,0 +1,58 @@
+<div class="app-home">
+  <div
+    class="banner"
+    [ngStyle]="{ 'background-image': 'url(' + bannerImg + ')' }"
+  >
+    <div class="banner-fill text-center"><h1>Welcome to ASQ Shop</h1></div>
+  </div>
+
+  <div class="products container">
+    <h3 class="text-center">About Us</h3>
+    <p class="text-center">
+      ASQ: a mobile web based agricultural supply and quoting system. To help
+      farmer that can easily buy and enquire agricultural product through mobile
+      and web.
+    </p>
+    <!-- <div class="products-right">
+      <div class="agile_top_brands_grids row">
+        <div
+          class="col-md-4 top_brand_left"
+          *ngFor="let product of productList"
+        >
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+              <div class="agile_top_brand_left_grid1">
+                <figure>
+                  <div class="snipcart-item block">
+                    <div class="snipcart-thumb">
+                      <a routerLink="/product/{{ product.id }}"
+                        ><img title=" " alt=" " [src]="product.image"
+                      /></a>
+                      <p>{{ product.name }}</p>
+                      <h4>{{ product.price | currency: '₱' }}</h4>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details">
+                      <form>
+                        <fieldset>
+                          <input
+                            type="submit"
+                            name="submit"
+                            value="Add to cart"
+                            class="button"
+                            (click)="
+                              addToCart(+product.id, +product.businessId)
+                            "
+                          />
+                        </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

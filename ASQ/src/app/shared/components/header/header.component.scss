@@ -1,0 +1,63 @@
+.app-header {
+  .agileits_header {
+    .agile-login {
+      width: auto;
+      &.right {
+        float: right;
+      }
+      .cart .fa {
+        font-size: 20px;
+      }
+
+      li.dropdown {
+        a {
+          padding: 0;
+          text-transform: capitalize;
+          color: #fff;
+          cursor: pointer;
+        }
+        .dropdown-menu {
+          button {
+            cursor: pointer;
+            font-size: 14px;
+            .fa {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .logo_products {
+    .w3l_search {
+      .input-group {
+        justify-content: flex-end;
+        .btn-browse {
+          opacity: 0.8;
+          background: #fe9126;
+          border-color: #fe9126;
+          color: #fff;
+          font-weight: bold;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+      .search-icon {
+        cursor: pointer;
+        background: #fe9126;
+        .fa-search {
+          margin-bottom: 3px;
+        }
+      }
+    }
+  }
+  .navigation-agileits {
+    ul.navbar-nav li a {
+      color: #fff;
+      &.dropdown-item {
+        color: initial;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.business-info {
+  padding: 0;
+  padding-bottom: 3em;
+  .login-form-grids {
+    input[type='text'] {
+      margin: 0;
+      margin-top: 1em;
+    }
+    textarea {
+      outline: none;
+      border: 1px solid #dbdbdb;
+      padding: 10px 10px 10px 10px;
+      font-size: 14px;
+      color: #999;
+      display: block;
+      width: 100%;
+      margin-top: 1em;
+    }
+  }
+}

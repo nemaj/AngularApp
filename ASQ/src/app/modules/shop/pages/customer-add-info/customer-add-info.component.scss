@@ -1,0 +1,15 @@
+.customer-info {
+  padding: 0;
+  padding-bottom: 3em;
+  .login-form-grids {
+    input {
+      margin: 1em 0 0;
+      &:first-child {
+        margin: 0;
+      }
+      &:last-child {
+        margin: 1em 0;
+      }
+    }
+  }
+}

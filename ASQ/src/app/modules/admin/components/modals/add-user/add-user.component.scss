@@ -1,0 +1,37 @@
+.add-user {
+  .types {
+    .radio-group {
+      width: 100%;
+      display: inline-flex;
+      border: 2px solid #007bff;
+      input[type='radio'] {
+        display: none;
+      }
+      .label {
+        display: inline-block;
+        flex-grow: 1;
+        width: 100%;
+        padding: 0;
+        background-color: #ddd;
+        border-right: 2px solid #007bff;
+        color: #7b5c8d !important;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 40px;
+        margin-bottom: 0 !important;
+        font-family: sans-serif;
+        text-align: center;
+        background: linear-gradient(180deg, #f7f0fb 1%, #fff);
+        &:last-child {
+          border-width: 0px;
+        }
+      }
+      input[type='radio']:checked + label {
+        color: #fff !important;
+        background: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 1px 0 0 1px;
+      }
+    }
+  }
+}

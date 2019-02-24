@@ -1,0 +1,73 @@
+<div class="app-chat">
+  <h3 class="text-center">
+    {{ usersRole === '2' && !listUsers.length ? 'No Message' : 'Messaging' }}
+  </h3>
+
+  <div class="supplier-button" [ngClass]="{ hide: usersRole !== '2' }">
+    <select (change)="selectUser(+$event.target.value)">
+      <option *ngFor="let user of listUsers; let idx = index" [value]="idx">
+        {{ user.customerName }}
+      </option>
+    </select>
+  </div>
+
+  <div
+    class="chat-wrapper"
+    [ngClass]="{
+      hide: usersRole === '2' && !listUsers.length,
+      supplier: usersRole === '2'
+    }"
+  >
+    <div class="chat-users" [ngClass]="{ hide: usersRole !== '2' }">
+      <div class="header">
+        <span>Recent</span>
+        <div class="search">
+          <input type="text" placeholder="Search" />
+          <span class="fa fa-search"></span>
+        </div>
+      </div>
+      <div class="users-list">
+        <div class="content">
+          <div
+            class="user-info"
+            *ngFor="let user of listUsers; let idx = index"
+            [ngClass]="{ active: user.isSelected }"
+            (click)="selectUser(idx)"
+          >
+            <p>{{ user.customerName }}</p>
+            <span>{{ user.date | date: 'LLL d, yyyy' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-messages">
+      <div class="header">
+        <p>{{ messageInfoName }}</p>
+      </div>
+      <div class="content" #content>
+        <div
+          class="message"
+          *ngFor="let message of chatMessages"
+          [ngClass]="message.senderRole === usersRole ? 'right' : 'left'"
+        >
+          <div class="message-body">
+            <p>{{ message.message }}</p>
+            <span>{{ message.date | timeAgo }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="form">
+        <div class="form-text">
+          <input
+            type="text"
+            placeholder="Type a message"
+            name="message"
+            [(ngModel)]="message"
+            (keydown)="enterKey($event)"
+          />
+          <span class="fa fa-paper-plane" (click)="sendMessage()"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

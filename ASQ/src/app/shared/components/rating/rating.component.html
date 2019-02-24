@@ -1,0 +1,17 @@
+<div class="app-rating">
+  <ng-template #t let-fill="fill">
+    <span class="star" [ngStyle]="starStyle" [class.full]="fill === 100">
+      <span class="half" [style.width.%]="fill">★</span>★
+    </span>
+  </ng-template>
+  <ngb-rating
+    [(rate)]="rate"
+    [starTemplate]="t"
+    [readonly]="readonly"
+    (rateChange)="checkRating()"
+    max="5"
+  ></ngb-rating>
+  <span class="rate-value" [ngClass]="{ show: isRatingLabelShow() }">
+    {{ rate }}
+  </span>
+</div>

@@ -1,0 +1,54 @@
+<div class="browse-list">
+  <div class="container mb-5">
+    <h3 class="text-center" *ngIf="productList.length">
+      Products recomended for you
+    </h3>
+    <h3 class="text-center" *ngIf="!productList.length">
+      No products recomended for that budget
+    </h3>
+    <div *ngIf="!productList.length" class="p-5"></div>
+    <div class="products-right" *ngIf="productList.length">
+      <div class="agile_top_brands_grids row">
+        <div
+          class="col-md-4 top_brand_left"
+          *ngFor="let product of productList"
+        >
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+              <div class="agile_top_brand_left_grid1">
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a routerLink="/product/{{ product.id }}"
+                      ><img title=" " alt=" " [src]="product.image"
+                    /></a>
+                    <p>{{ product.name }}</p>
+                    <h4>{{ product.price | currency: '₱' }}</h4>
+                  </div>
+                  <div class="snipcart-details top_brand_home_details">
+                    <form>
+                      <fieldset>
+                        <input
+                          type="submit"
+                          name="submit"
+                          value="Add to cart"
+                          class="button"
+                          (click)="addToCart(+product.id, +product.businessId)"
+                        />
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-product-suggest
+    *ngIf="productType"
+    [productType]="productType"
+    [productBudget]="productBudget"
+  ></app-product-suggest>
+</div>

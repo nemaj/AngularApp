@@ -1,0 +1,24 @@
+// .nav {
+//   min-width: 300px;
+//   .search {
+//     position: relative;
+//     .form-control {
+//       width: 300px;
+//     }
+//   }
+// }
+
+.nav-item .nav-link {
+  cursor: pointer;
+  &.search {
+    align-items: center;
+    .fa {
+      margin-right: 5px;
+    }
+  }
+}
+
+.content {
+  padding-top: 20px;
+  position: relative;
+}

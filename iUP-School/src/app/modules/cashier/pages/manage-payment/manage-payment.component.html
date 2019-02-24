@@ -1,0 +1,31 @@
+<div class="m-payment">
+  <div class="container-fluid">
+    <h3>Manage Payments</h3>
+    <button class="btn btn-success btn-add" (click)="add()">
+      <i class="fa fa-plus"></i> Add
+    </button>
+    <div class="content">
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Payment Name</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of criteriaList">
+              <td>{{ item.name }}</td>
+              <td>{{ item.price }}</td>
+              <td>
+                <i class="fa fa-edit" (click)="edit(item)"></i>
+                <i class="fa fa-trash" (click)="delete(item)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

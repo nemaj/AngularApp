@@ -1,0 +1,31 @@
+<app-admin-breadcrumbs [page]="breadcrumbs"></app-admin-breadcrumbs>
+<div class="container customer-report">
+  <div class="title">
+    <span>Farmers Report</span>
+    <button class="btn btn-print" (click)="print()">
+      <i class="fa fa-print"></i> Print
+    </button>
+  </div>
+  <canvas
+    *ngIf="isCustomer"
+    baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+  >
+  </canvas>
+  <div class="chart-wrapper">
+    <canvas
+      *ngIf="isCustomer"
+      #chartCustomer
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    ></canvas>
+  </div>
+</div>

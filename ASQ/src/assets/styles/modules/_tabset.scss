@@ -1,0 +1,29 @@
+.custom-tabs {
+  .nav-tabs {
+    border .nav-item {
+      margin-bottom: -1px;
+    }
+    .nav-link {
+      color: #999;
+      font-size: 16px;
+      padding: 10px 20px !important;
+      &:hover,
+      &:focus {
+        background: #fff;
+        color: #fe9126 !important;
+        border-color: transparent;
+      }
+      &.active {
+        color: #fe9126 !important;
+        background: #fff;
+        // border-width: 1px;
+        // border-color: #dee2e6 #dee2e6 #fff;
+        border: 0;
+        border-bottom: 3px solid;
+      }
+    }
+  }
+  .tab-content {
+    padding-top: 30px;
+  }
+}

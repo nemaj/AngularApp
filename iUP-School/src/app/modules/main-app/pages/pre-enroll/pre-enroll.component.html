@@ -1,0 +1,166 @@
+<div
+  class="breadcumb-area bg-img"
+  style="background-image: url(assets/img/bg-img/breadcumb.jpg);"
+>
+  <div class="bradcumbContent">
+    <h2>{{ pageTitle }}</h2>
+  </div>
+</div>
+<div class="pre-enroll section-padding-100">
+  <div class="container">
+    <div class="enroll-form">
+      <form [formGroup]="parentForm" (submit)="enroll(parentForm.invalid)">
+        <h5>Parent Form</h5>
+        <div class="up-input">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" formControlName="fname" />
+          <span
+            class="error"
+            *ngIf="
+              controls.fname.invalid &&
+              (controls.fname.dirty || controls.fname.touched) &&
+              controls.fname.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="mname">Middle Name</label>
+          <input type="text" id="mname" name="mname" formControlName="mname" />
+          <span
+            class="error"
+            *ngIf="
+              controls.mname.invalid &&
+              (controls.mname.dirty || controls.mname.touched) &&
+              controls.mname.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" formControlName="lname" />
+          <span
+            class="error"
+            *ngIf="
+              controls.lname.invalid &&
+              (controls.lname.dirty || controls.lname.touched) &&
+              controls.lname.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <label class="form-label">Gender</label>
+        <div class="btn-group">
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              class="custom-control-input"
+              id="male"
+              name="gender"
+              formControlName="gender"
+              value="Male"
+            />
+            <label class="custom-control-label" for="male"> Male </label>
+          </div>
+
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              class="custom-control-input"
+              id="female"
+              name="gender"
+              formControlName="gender"
+              value="Female"
+            />
+            <label class="custom-control-label" for="female"> Female </label>
+          </div>
+        </div>
+        <div class="up-input">
+          <label for="birthdate">Birthdate</label>
+          <input
+            type="text"
+            id="birthdate"
+            name="birthdate"
+            formControlName="birthdate"
+            bsDatepicker
+          />
+          <span
+            class="error"
+            *ngIf="
+              controls.birthdate.invalid &&
+              (controls.birthdate.dirty || controls.birthdate.touched) &&
+              controls.birthdate.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="birthplace">Birth Place</label>
+          <textarea
+            name="birthplace"
+            formControlName="birthplace"
+            id="birthplace"
+            rows="2"
+          ></textarea>
+          <span
+            class="error"
+            *ngIf="
+              controls.birthplace.invalid &&
+              (controls.birthplace.dirty || controls.birthplace.touched) &&
+              controls.birthplace.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="up-input">
+          <label for="address">Address</label>
+          <textarea
+            name="address"
+            formControlName="address"
+            id="address"
+            rows="2"
+          ></textarea>
+          <span
+            class="error"
+            *ngIf="
+              controls.address.invalid &&
+              (controls.address.dirty || controls.address.touched) &&
+              controls.address.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="select up-input">
+          <label for="address">Grade Level</label>
+          <select class="form-control" name="level" formControlName="level">
+            <option *ngFor="let lvl of levelList" [value]="lvl.id">
+              {{ lvl.level }}
+            </option>
+          </select>
+          <span
+            class="error"
+            *ngIf="
+              controls.level.invalid &&
+              (controls.level.dirty || controls.level.touched) &&
+              controls.level.errors.required
+            "
+          >
+            *This field is required
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="btn up-button " [disabled]="parentForm.invalid">
+            {{ pageTitle === 'Pre Enrollment' ? 'Enroll' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

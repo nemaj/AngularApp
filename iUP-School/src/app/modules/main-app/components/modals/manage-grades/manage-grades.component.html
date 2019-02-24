@@ -1,0 +1,91 @@
+<div class="manage-grades">
+  <a class="close" (click)="close()"><i class="fa fa-close"></i></a>
+  <h3 class="title">
+    {{ pupilInfo?.firstName + ' ' + pupilInfo?.lastName }} Grade Details (
+    {{ periodDesc }} )
+  </h3>
+  <div class="note">
+    <p><b>Note: </b> Please just input the over all percentage point (0-99%)</p>
+  </div>
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <th width="50%">Subject</th>
+          <th width="50%">Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of details">
+          <td>{{ item.criteria }}</td>
+          <td>
+            <input
+              class="text-field"
+              type="text"
+              name="grade-{{ item.id }}"
+              [(ngModel)]="item.grade"
+            />
+          </td>
+        </tr>
+        <!-- <tr>
+          <td>Unit Test</td>
+          <td>
+            <input
+              class="text-field"
+              type="text"
+              name="unitTest"
+              [(ngModel)]="unitTest"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Quizzes and Activities</td>
+          <td>
+            <input
+              class="text-field"
+              type="text"
+              name="quizzes"
+              [(ngModel)]="quizzes"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Assignment</td>
+          <td>
+            <input
+              class="text-field"
+              type="text"
+              name="assignment"
+              [(ngModel)]="assignment"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Project</td>
+          <td>
+            <input
+              class="text-field"
+              type="text"
+              name="project"
+              [(ngModel)]="project"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Participation</td>
+          <td>
+            <input
+              class="text-field"
+              type="text"
+              name="participation"
+              [(ngModel)]="participation"
+            />
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <button class="btn up-button" (click)="saveGrades()">Save</button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.academy-main-menu .affix-style {
+  width: 1054px;
+  position: fixed;
+  top: 0px;
+  z-index: inherit;
+}
+
+.header-area {
+  .login-content {
+    position: relative;
+    a {
+      cursor: pointer;
+      .fa {
+        font-size: 20px;
+        position: relative;
+        top: 2px;
+      }
+    }
+    .dropdown-menu {
+      min-width: 8rem;
+      .dropdown-item .fa {
+        margin-right: 5px;
+      }
+    }
+  }
+}

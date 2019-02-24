@@ -1,0 +1,17 @@
+.app-admin {
+  ng-sidebar-container {
+    height: 100vh;
+  }
+
+  .admin-content {
+    text-align: center;
+    p {
+      text-align: left;
+    }
+    .router-content {
+      height: 100%;
+      height: calc(100vh - 50px);
+      text-align: initial;
+    }
+  }
+}

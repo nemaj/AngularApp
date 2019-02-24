@@ -1,0 +1,201 @@
+.supplier {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-height: 60vh;
+  .agile_top_brands_grids .top_brand_left {
+    &.edit {
+      .btn-edit {
+        display: block;
+      }
+      .snipcart-details {
+        display: none;
+      }
+    }
+    .btn-edit {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      right: 20px;
+      top: 5px;
+      border: 0;
+      padding: 0px 5px;
+    }
+  }
+  .profile {
+    position: relative;
+    text-align: center;
+    .edit-button {
+      cursor: pointer;
+      position: absolute;
+      right: 5px;
+      font-size: 12px;
+      color: #17a2b8;
+    }
+    .image {
+      position: relative;
+      width: 125px;
+      height: 125px;
+      margin: auto;
+      margin-bottom: 20px;
+      border: 1px solid;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      &:hover {
+        opacity: 0.8;
+        // background: rgba(#f5f5f5, 0.5);
+        // color: #999;
+        &.disabled {
+          opacity: 1;
+          .image-info {
+            display: none;
+          }
+        }
+        .image-info {
+          display: block;
+        }
+      }
+      .initial {
+        font-size: 70px;
+        position: relative;
+        top: 5px;
+      }
+      .image-info {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        left: 4px;
+        // left: 40px;
+        width: 120px;
+        color: #fe9126;
+        font-weight: bold;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  .products-right-grids {
+    margin-bottom: 0;
+    justify-content: flex-end;
+    .register-home {
+      margin: 0;
+      margin-top: 7px;
+      text-align: left;
+      a {
+        cursor: pointer;
+        padding: 8px 15px;
+      }
+    }
+  }
+  // @media (max-width: 667px) {
+  //   .products-right-grids .sorting {
+  //     width: 50%;
+  //   }
+  // }
+  .product-form {
+    padding: 0;
+    padding-bottom: 2em;
+    text-align: center;
+    .forms {
+      padding: 3em;
+      background: #f7f7f9;
+      // margin: 3em auto 0;
+    }
+    input[type='text']:nth-child(2) {
+      margin: 0;
+      margin-top: 1em;
+    }
+    input[type='submit'] {
+      outline: none;
+      border: none;
+      padding: 10px 0;
+      font-size: 1em;
+      color: #fff;
+      display: block;
+      width: 100%;
+      background: #3399cc;
+      margin: 1.5em 0 0;
+    }
+    .form-field {
+      margin-top: 1em;
+      outline: none;
+      border: 1px solid #dbdbdb;
+      padding: 10px 10px 10px 10px;
+      font-size: 14px;
+      color: #999;
+      display: block;
+      width: 100%;
+    }
+    select {
+      padding-left: 5px !important;
+    }
+
+    .controllers {
+      margin-bottom: 10px;
+    }
+
+    .image-uploader {
+      .product-images {
+        margin-top: 10px;
+        .image {
+          position: relative;
+          margin-bottom: 10px;
+          &:hover .image-btn {
+            display: block;
+          }
+          &-btn {
+            display: none;
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            border: 0;
+            font-size: 18px;
+            padding: 0 5px;
+          }
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      @media (max-width: 991px) {
+        .product-images {
+          .image-btn {
+            display: block;
+          }
+        }
+      }
+      .btn-add {
+        width: 100%;
+      }
+      .btn-file {
+        position: relative;
+        overflow: hidden;
+        input[type='file'] {
+          position: absolute;
+          top: 0;
+          left: 0;
+          min-width: 100%;
+          min-height: 100%;
+          text-align: right;
+          opacity: 0;
+          background: none;
+          cursor: inherit;
+          display: block;
+        }
+      }
+      .preview {
+        display: flex;
+        .image {
+          &-view {
+            width: 100%;
+            height: 100%;
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<div class="app-sidebar">
+  <div class="nav-side-menu">
+    <div class="brand"><b>ASQ</b> Dashboard</div>
+    <i class="fa fa-close fa-2x toggle-btn" (click)="closeSidebar()"></i>
+
+    <div class="menu-list">
+      <ul id="menu-content" class="menu-content">
+        <li routerLinkActive="active" (click)="goTo('dashboard')">
+          <a> <i class="fa fa-dashboard fa-lg"></i> Dashboard </a>
+        </li>
+
+        <li routerLinkActive="active" (click)="goTo('users')">
+          <a> <i class="fa fa-users fa-lg"></i> Users </a>
+        </li>
+
+        <li routerLinkActive="active" (click)="goTo('suppliers')">
+          <a> <i class="fa fa-user fa-lg"></i> New Supplier </a>
+        </li>
+
+        <li
+          data-toggle="collapse"
+          data-target="#products"
+          class="collapsed"
+          [ngClass]="{ active: isProductActive }"
+        >
+          <a>
+            <i class="fa fa-folder-o fa-lg"></i> Products
+            <span class="arrow"></span>
+          </a>
+        </li>
+        <ul class="sub-menu collapse" id="products">
+          <li routerLinkActive="active" (click)="goTo('product-type')">
+            <a>Product Type</a>
+          </li>
+          <li routerLinkActive="active" (click)="goTo('product-unit')">
+            <a>Product Unit</a>
+          </li>
+        </ul>
+
+        <li
+          data-toggle="collapse"
+          data-target="#graphReports"
+          class="collapsed"
+        >
+          <a>
+            <i class="fa fa-bar-chart fa-lg"></i> Graph Reports
+            <span class="arrow"></span>
+          </a>
+        </li>
+        <ul class="sub-menu collapse" id="graphReports">
+          <li><a (click)="goTo('chart/collection')">Collection Report</a></li>
+          <li><a (click)="goTo('chart/farmer')">Register Farmer</a></li>
+          <li><a (click)="goTo('chart/supplier')">Register Supplier</a></li>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#listReports" class="collapsed">
+          <a>
+            <i class="fa fa-list-ul fa-lg"></i> List Reports
+            <span class="arrow"></span>
+          </a>
+        </li>
+        <ul class="sub-menu collapse" id="listReports">
+          <li><a (click)="goTo('list/collection')">List of Collection</a></li>
+          <li><a (click)="goTo('list/supplier')">List of Supplier</a></li>
+          <li><a (click)="goTo('list/customer')">List of Customer</a></li>
+          <li><a (click)="goTo('list/product')">List of Products</a></li>
+          <li><a (click)="goTo('list/orders')">List of Orders</a></li>
+          <li><a (click)="goTo('list/feedback')">List of feedback</a></li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</div>

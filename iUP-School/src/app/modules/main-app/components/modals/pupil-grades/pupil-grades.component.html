@@ -1,0 +1,57 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">
+      {{ pupilInfo?.lastName + ', ' + pupilInfo?.firstName }}
+    </h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <div class="up-modal-body grades">
+    <div class="grades-header">
+      <div class="select up-input">
+        <select
+          class="form-control"
+          name="period"
+          id="period"
+          [(ngModel)]="period"
+          (ngModelChange)="getSubjects()"
+          required
+        >
+          <option value="" selected disabled>Select grading period</option>
+          <option value="1">1st Period</option>
+          <option value="2">2nd Period</option>
+          <option value="3">3rd Period</option>
+          <option value="4">4th Period</option>
+        </select>
+      </div>
+      <div class="border" *ngIf="period"></div>
+    </div>
+
+    <div class="grades-body" *ngIf="period">
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th width="40%">Subject</th>
+              <th width="40%">Grade</th>
+              <th width="20%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of subjectsList">
+              <td>{{ item.subject }}</td>
+              <td>{{ item.grade }}</td>
+              <td><span class="fa fa-cogs" (click)="manage(item)"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="up-modal-footer">
+    <button class="btn btn-default">Cancel</button>
+    <button class="btn up-button" type="button">Save</button>
+  </div>
+</div>

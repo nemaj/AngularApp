@@ -1,0 +1,163 @@
+<div class="cart">
+  <div class="container">
+    <h3 class="text-center">My Cart</h3>
+    <div class="row mt-4">
+      <div class="col-12 text-center empty" *ngIf="isCartEmpty">
+        <p>Cart is empty</p>
+      </div>
+      <div class="col-md-8" *ngIf="!isCartEmpty">
+        <div class="cart-wrapper top">
+          <div class="shop-checkbox">
+            <input
+              id="selectAll"
+              name="selectAll"
+              type="checkbox"
+              [(ngModel)]="selectAll"
+              (click)="selectAllProduct(!selectAll)"
+            />
+            <label for="selectAll">Select All</label> <span></span>
+          </div>
+        </div>
+        <div
+          class="cart-wrapper"
+          *ngFor="let cart of cartProductList; let idx = index"
+        >
+          <div class="supplier">
+            <div class="shop-checkbox">
+              <input
+                type="checkbox"
+                id="supplier"
+                name="supplier"
+                [(ngModel)]="cart.checked"
+                (click)="selectSupplier(idx, !cart.checked)"
+              />
+              <label for="supplier">{{ cart.info.name }}</label> <span></span>
+            </div>
+          </div>
+          <div
+            class="products-list"
+            *ngFor="let product of cart.products; let prodIdx = index"
+          >
+            <div class="shop-checkbox">
+              <input
+                type="checkbox"
+                [attr.id]="'cb' + product.product_id"
+                [attr.name]="'cb' + product.product_id"
+                [(ngModel)]="product.checked"
+                (click)="selectProduct(idx, product)"
+              />
+              <label [attr.for]="'cb' + product.product_id">&nbsp;</label>
+              <span></span>
+            </div>
+            <div
+              class="product-img"
+              (click)="goToProductDetails(+product.product_id)"
+            >
+              <img [src]="product.image" />
+            </div>
+            <div class="product-info">
+              <p (click)="goToProductDetails(+product.product_id)">
+                {{ product.name }}
+              </p>
+              <p class="desc" (click)="goToProductDetails(+product.product_id)">
+                {{ product.description }}
+              </p>
+              <p class="price">{{ product.price | currency: '₱' }}</p>
+              <span
+                class="control"
+                (click)="removeProduct(product.id, idx, prodIdx)"
+                ><i class="fa fa-trash-o"></i> Remove</span
+              >
+            </div>
+            <div class="product-price">
+              <span>
+                {{ product.price | currency: '₱' }}
+                <i *ngIf="product.discount">(-5%)</i>
+              </span>
+            </div>
+            <div class="product-quantity">
+              <span
+                class="button"
+                (click)="manageQuantity('minus', product)"
+                [ngClass]="{
+                  disabled: isQuantityDisabled(
+                    +product.quantity,
+                    +product.stock,
+                    'minus'
+                  )
+                }"
+                ><i class="fa fa-minus"></i
+              ></span>
+              <span>{{ product.quantity }}</span>
+              <span
+                class="button"
+                (click)="manageQuantity('plus', product)"
+                [ngClass]="{
+                  disabled: isQuantityDisabled(
+                    +product.quantity,
+                    +product.stock,
+                    'plus'
+                  )
+                }"
+                ><i class="fa fa-plus"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="!isCartEmpty">
+        <div class="cart-wrapper info">
+          <p class="cart-header">
+            <span>Shipping Information</span>
+            <span class="edit" routerLink="/customer-info">
+              <i class="fa fa-pencil"></i>
+            </span>
+          </p>
+          <p class="cart-details">
+            {{ customerInfo?.firstName + ' ' + customerInfo?.lastName }}
+          </p>
+          <p class="cart-details" *ngIf="!isCustomerAddressNotEmpty">
+            {{
+              customerInfo?.street +
+                ', ' +
+                customerInfo?.barangay +
+                ', ' +
+                customerInfo?.city +
+                ', ' +
+                customerInfo?.province
+            }}
+          </p>
+          <p class="cart-details" *ngIf="customerInfo?.contactNumber">
+            {{ customerInfo?.contactNumber }}
+          </p>
+        </div>
+        <div class="cart-wrapper cart-info">
+          <p class="cart-header">Order Summary</p>
+          <p class="cart-details">
+            <span class="details-label"
+              >Subtotal (<b
+                >{{ totalItem }} item{{ +totalItem > 1 ? 's' : '' }}</b
+              >)</span
+            >
+            <span class="details-value">{{ subTotal | currency: '₱' }}</span>
+          </p>
+          <p class="cart-details">
+            <span class="details-label">Shipping Fee</span>
+            <span class="details-value">FREE</span>
+          </p>
+          <p class="cart-details">
+            <span class="details-label">Total</span>
+            <span class="details-value">{{ subTotal | currency: '₱' }}</span>
+          </p>
+          <button
+            class="btn btn-cart"
+            [disabled]="!subTotal"
+            (click)="proceedToCheckout()"
+          >
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

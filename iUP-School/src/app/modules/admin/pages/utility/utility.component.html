@@ -1,0 +1,71 @@
+<div class="enroll admin-tabs utilities">
+  <tabset [justified]="true">
+    <tab heading="Learning Areas">
+      <button class="btn btn-success btn-add mt-4 mb-1" (click)="add()">
+        Add Areas
+      </button>
+      <div class="card strpied-tabled-with-hover mt-1">
+        <div class="card-body">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th style="width:17px;">No.</th>
+                <th width="70%">Areas</th>
+                <th width="30%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let area of ListOfArea; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ area.area }}</td>
+                <td class="action">
+                  <span
+                    class="fa fa-pencil-square-o"
+                    (click)="edit(area)"
+                  ></span>
+                  <span class="fa fa-trash-o" (click)="delete(area)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Subjects">
+      <button class="btn btn-success btn-add mt-4 mb-1" (click)="addSubject()">
+        Add Subject
+      </button>
+      <div class="card strpied-tabled-with-hover mt-1">
+        <div class="card-body">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th style="width:17px;">No.</th>
+                <th width="70%">Subject</th>
+                <th width="20%">Level</th>
+                <th width="20%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subject of ListOfSubjects; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ subject.subject }}</td>
+                <td>{{ subject.level }}</td>
+                <td class="action">
+                  <span
+                    class="fa fa-pencil-square-o"
+                    (click)="editSubject(subject)"
+                  ></span>
+                  <span
+                    class="fa fa-trash-o"
+                    (click)="deleteSubject(subject)"
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>

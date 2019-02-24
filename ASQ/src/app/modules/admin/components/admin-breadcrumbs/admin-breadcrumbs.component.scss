@@ -1,0 +1,22 @@
+.admin-breadcrumbs {
+  line-height: 40px;
+  background: #f2f2f2;
+  margin-bottom: 20px;
+
+  ul {
+    list-style: none;
+    li {
+      display: inline-block;
+      text-transform: capitalize;
+      a {
+        font-weight: bold;
+      }
+    }
+    li + li:before {
+      padding: 0 5px;
+      padding-left: 10px;
+      color: #ccc;
+      content: '/\00a0';
+    }
+  }
+}

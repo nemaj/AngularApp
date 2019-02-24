@@ -1,0 +1,96 @@
+<div class="supplier-orders">
+  <div class="container">
+    <h3 class="text-center">List of Orders</h3>
+    <div class="row mt-4" *ngFor="let order of ordersList; let idx = index">
+      <div class="col-md-8">
+        <div class="cart-wrapper">
+          <div class="order">
+            <label>{{ 'Order #' + order.code }}</label>
+            <span class="sm-status">
+              Status:
+              <b>{{ +order.status === 2 ? 'Received' : 'Processing...' }}</b>
+            </span>
+            <span class="status" *ngIf="+order.status === 1">
+              Processing...
+            </span>
+            <button
+              class="btn"
+              [ngClass]="+order.status === 2 ? 'btn-primary' : 'btn-order'"
+              (click)="receivedOrder(order.code)"
+              [disabled]="+order.status === 2"
+            >
+              Receive{{ +order.status === 2 ? 'd' : '' }}
+            </button>
+          </div>
+          <div
+            class="products-list"
+            *ngFor="let product of order.products; let prodIdx = index"
+          >
+            <div class="product-img"><img [src]="product.image" /></div>
+            <div class="product-info">
+              <p class="name">{{ product.name }}</p>
+              <p class="desc">{{ product.description }}</p>
+              <p class="price">
+                ({{ product.price | currency: '₱' }}) x {{ product.quantity }}
+              </p>
+            </div>
+            <div class="product-price">
+              <span>
+                {{ product.price | currency: '₱' }}
+                <i *ngIf="product.discount">(-5%)</i>
+              </span>
+              <!-- <span class="quantity"><i>Qty:</i>{{ product.quantity }}</span> -->
+            </div>
+            <div class="product-quantity">
+              <span><i>Qty:</i>{{ product.quantity }}</span>
+            </div>
+            <!-- <div class="product-review" *ngIf="+order.status === 2">
+              <button
+                class="btn btn-review"
+                (click)="writeReview(+product.product_id, product.isReviewed)"
+              >
+                {{ product.isReviewed ? 'View Review' : 'Review' }}
+              </button>
+            </div> -->
+          </div>
+          <div class="div-status" *ngIf="+order.status === 1">
+            <button
+              class="btn"
+              [ngClass]="+order.status === 2 ? 'btn-primary' : 'btn-order'"
+              (click)="receivedOrder(order.code)"
+            >
+              Receive
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cart-wrapper cart-info">
+          <p class="cart-header">Total Summary</p>
+          <p class="cart-details">
+            <span class="details-label">
+              Subtotal (<b
+                >{{ order.totalProducts }} item{{
+                  +order.totalProducts > 1 ? 's' : ''
+                }}</b
+              >)
+            </span>
+            <span class="details-value">{{
+              order.totalPrice | currency: '₱'
+            }}</span>
+          </p>
+          <p class="cart-details">
+            <span class="details-label">Shipping Fee</span>
+            <span class="details-value">FREE</span>
+          </p>
+          <p class="cart-details">
+            <span class="details-label">Total</span>
+            <span class="details-value">{{
+              order.totalPrice | currency: '₱'
+            }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

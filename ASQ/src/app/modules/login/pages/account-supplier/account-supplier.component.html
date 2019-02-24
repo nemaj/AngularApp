@@ -1,0 +1,134 @@
+<div class="register">
+  <div class="container">
+    <h2>Supplier Registration</h2>
+    <div class="login-form-grids">
+      <h5>Supplier Information</h5>
+      <form
+        role="form"
+        [formGroup]="ngForm"
+        (submit)="register(ngForm.invalid)"
+      >
+        <input
+          type="text"
+          placeholder="First Name..."
+          name="firstName"
+          formControlName="firstName"
+          [formGroup]="ngForm"
+        />
+        <small
+          *ngIf="
+            getFormControl('firstName').invalid &&
+            (getFormControl('firstName').dirty ||
+              getFormControl('firstName').touched) &&
+            getFormControl('firstName').errors.required
+          "
+          class="form-text text-danger mb-1"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="text"
+          placeholder="Last Name..."
+          name="lastName"
+          formControlName="lastName"
+          [formGroup]="ngForm"
+        />
+        <small
+          *ngIf="
+            getFormControl('lastName').invalid &&
+            (getFormControl('lastName').dirty ||
+              getFormControl('lastName').touched) &&
+            getFormControl('lastName').errors.required
+          "
+          class="form-text text-danger mb-1"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          formControlName="username"
+          [formGroup]="ngForm"
+        />
+        <small
+          *ngIf="
+            getFormControl('username').invalid &&
+            (getFormControl('username').dirty ||
+              getFormControl('username').touched) &&
+            getFormControl('username').errors.required
+          "
+          class="form-text text-danger mb-1"
+        >
+          This field is required.
+        </small>
+        <small
+          *ngIf="
+            getFormControl('username').invalid &&
+            (getFormControl('username').dirty ||
+              getFormControl('username').touched) &&
+            getFormControl('username').errors.incorrect
+          "
+          class="form-text text-danger mb-1"
+        >
+          Username is already used.
+        </small>
+
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          formControlName="password"
+          [formGroup]="ngForm"
+        />
+        <small
+          *ngIf="
+            getFormControl('password').invalid &&
+            (getFormControl('password').dirty ||
+              getFormControl('password').touched) &&
+            getFormControl('password').errors.required
+          "
+          class="form-text text-danger mb-1"
+        >
+          This field is required.
+        </small>
+
+        <input
+          type="password"
+          placeholder="Password Confirmation"
+          name="confirm"
+          formControlName="confirm"
+          [formGroup]="ngForm"
+        />
+        <small
+          *ngIf="
+            getFormControl('confirm').invalid &&
+            (getFormControl('confirm').dirty ||
+              getFormControl('confirm').touched) &&
+            getFormControl('confirm').errors.required
+          "
+          class="form-text text-danger mb-1"
+        >
+          This field is required.
+        </small>
+        <small
+          *ngIf="
+            (getFormControl('confirm').dirty ||
+              getFormControl('confirm').touched) &&
+            getFormControl('confirm').errors?.MatchPassword
+          "
+          class="form-text text-danger mb-1"
+        >
+          Password not match.
+        </small>
+
+        <input type="submit" value="Register" />
+      </form>
+    </div>
+    <p class="text-center another">
+      <a routerLink="/login/create">Click here.</a> For customer account.
+    </p>
+  </div>
+</div>

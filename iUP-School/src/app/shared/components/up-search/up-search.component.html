@@ -1,0 +1,26 @@
+<div class="up-input up-search">
+  <label for="parent" *ngIf="label">{{ label }}</label>
+  <div class="position-relative">
+    <input
+      type="text"
+      [placeholder]="placeholder || ''"
+      id="upSearch"
+      name="upSearch"
+      [(ngModel)]="upSearch"
+      (ngModelChange)="find($event)"
+      (click)="onClick()"
+      (blur)="onBlur()"
+    />
+    <div class="list-container" *ngIf="isDoneSearch && upSearch">
+      <p *ngFor="let item of resultList" (click)="selectItem(item)">
+        {{ item?.firstName + ' ' + item?.lastName }}
+      </p>
+    </div>
+    <div
+      class="list-container empty"
+      *ngIf="isDoneSearch && upSearch && !resultList.length"
+    >
+      <p>Can't find.</p>
+    </div>
+  </div>
+</div>
