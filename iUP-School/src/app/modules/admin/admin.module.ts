@@ -28,6 +28,7 @@ import { LearnMaterialsComponent } from './pages/learn-materials/learn-materials
 import { EnrollComponent } from './pages/enroll/enroll.component';
 import { TeacherInfoComponent } from './components/modals/teacher-info/teacher-info.component';
 import { UtilityComponent } from './pages/utility/utility.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { UtilityComponent } from './pages/utility/utility.component';
     LearnMaterialsComponent,
     EnrollComponent,
     TeacherInfoComponent,
-    UtilityComponent
+    UtilityComponent,
+    ReportsComponent
   ],
   entryComponents: [...AdminModals]
 })

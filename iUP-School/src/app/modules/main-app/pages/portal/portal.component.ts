@@ -106,7 +106,6 @@ export class PortalComponent implements OnInit {
 
   download(item) {
     const materialPath = `${environment.filePath}${item.file}`;
-    console.log(materialPath, item);
     const options = new RequestOptions({
       responseType: ResponseContentType.Blob
     });

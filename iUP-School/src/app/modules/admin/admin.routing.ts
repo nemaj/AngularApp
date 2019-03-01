@@ -10,6 +10,7 @@ import { ClassSchedulesComponent } from './pages/class-schedules/class-schedules
 import { LearnMaterialsComponent } from './pages/learn-materials/learn-materials.component';
 import { EnrollComponent } from './pages/enroll/enroll.component';
 import { UtilityComponent } from './pages/utility/utility.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,11 @@ export const routes: Routes = [
         path: 'utilities',
         component: UtilityComponent,
         data: { pageTitle: 'Utilities' }
+      },
+      {
+        path: 'reports',
+        component: ReportsComponent,
+        data: { pageTitle: 'Reports' }
       },
       {
         path: '**',

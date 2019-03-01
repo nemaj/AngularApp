@@ -15,16 +15,20 @@
         placeholder="Material Name"
       />
     </div>
-    <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+    <input type="file" name="file" (change)="getFile($event.target.files)" />
+    <!-- <input type="file" name="file" ng2FileSelect [uploader]="uploader" /> -->
   </div>
   <div class="up-modal-footer">
     <button class="btn btn-default" (click)="close()">Cancel</button>
-    <button
+    <!-- <button
       class="btn up-button"
       type="submit"
       (click)="uploader.uploadAll()"
       [disabled]="!uploader.getNotUploadedItems().length || !fileName"
     >
+      Save
+    </button> -->
+    <button class="btn up-button" type="submit" (click)="upload()">
       Save
     </button>
   </div>

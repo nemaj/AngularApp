@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://school-api.co',
-  filePath: '/assets/uploads/'
+  filePath: 'http://school-api.co/docs/'
 };
 
 /*

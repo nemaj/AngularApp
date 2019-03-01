@@ -27,6 +27,8 @@
     "file-saver": "^2.0.0",
     "fuctbase64": "^1.4.0",
     "fullcalendar": "^3.6.1",
+    "jspdf": "^1.5.3",
+    "jspdf-autotable": "^2.3.5",
     "moment": "^2.23.0",
     "multer": "^1.4.1",
     "ng-fullcalendar": "^1.7.1",

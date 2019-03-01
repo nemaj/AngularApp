@@ -16,6 +16,7 @@ const URL = 'http://localhost:3000/api/upload';
 export class AddMaterialsComponent implements OnInit {
   public onClose: Subject<boolean>;
   fileName;
+  file;
 
   public uploader: FileUploader = new FileUploader({
     url: URL,
@@ -29,25 +30,40 @@ export class AddMaterialsComponent implements OnInit {
 
   ngOnInit() {
     this.onClose = new Subject();
-    this.uploader.onAfterAddingFile = file => {
-      file.withCredentials = false;
-    };
-    this.uploader.onCompleteItem = (item: any, response: any) => {
-      if (response) {
-        const { result } = JSON.parse(response);
-        const fileType = item.file.type;
-        const postData = {
-          name: this.fileName,
-          type: fileType,
-          path: result
-        };
-        this._material.addMaterial(postData).subscribe(res => {
-          if (res) {
-            this.close(true);
-          }
-        });
+    // this.uploader.onAfterAddingFile = file => {
+    //   file.withCredentials = false;
+    // };
+    // this.uploader.onCompleteItem = (item: any, response: any) => {
+    //   if (response) {
+    //     const { result } = JSON.parse(response);
+    //     const fileType = item.file.type;
+    //     const postData = {
+    //       name: this.fileName,
+    //       type: fileType,
+    //       path: result
+    //     };
+    //     this._material.addMaterial(postData).subscribe(res => {
+    //       if (res) {
+    //         this.close(true);
+    //       }
+    //     });
+    //   }
+    // };
+  }
+
+  getFile(files: FileList) {
+    this.file = files.item(0);
+  }
+
+  upload() {
+    if (!this.fileName || !this.file) {
+      return;
+    }
+    this._material.upload(this.file, this.fileName).subscribe(res => {
+      if (res) {
+        this.close(true);
       }
-    };
+    });
   }
 
   close(response = false) {

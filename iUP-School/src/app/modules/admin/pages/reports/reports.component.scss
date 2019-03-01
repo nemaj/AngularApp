@@ -1,0 +1,15 @@
+.reports {
+  &-card {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    padding: 25px 10px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+    cursor: pointer;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

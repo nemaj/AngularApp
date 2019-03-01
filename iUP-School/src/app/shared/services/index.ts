@@ -10,6 +10,8 @@ import { PupilsService } from './pupils.service';
 import { TeacherService } from './teacher.service';
 import { UtilityService } from './utility.service';
 import { GradingService } from './grading.service';
+import { ReportsService } from './reports.service';
+import { PrintService } from './print.service';
 
 export const Services = [
   AuthService,
@@ -23,7 +25,9 @@ export const Services = [
   PupilsService,
   TeacherService,
   UtilityService,
-  GradingService
+  GradingService,
+  ReportsService,
+  PrintService
 ];
 
 export * from './auth.service';
@@ -39,3 +43,5 @@ export * from './pupils.service';
 export * from './teacher.service';
 export * from './utility.service';
 export * from './grading.service';
+export * from './reports.service';
+export * from './print.service';
