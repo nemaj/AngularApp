@@ -24,6 +24,7 @@ export class ManagePaymentComponent implements OnInit {
   getCriteria() {
     this._cashier.getCriteria().subscribe(res => {
       this.criteriaList = res;
+      console.log('criteriaList', this.criteriaList);
     });
   }
 

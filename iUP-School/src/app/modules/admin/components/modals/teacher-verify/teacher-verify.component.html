@@ -1,0 +1,18 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">Teacher Status</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <div class="up-modal-body teacher-info">
+    <p>{{ teacher?.firstName + ' ' + teacher?.lastName }}</p>
+    <p>
+      Verify Status is <b>{{ status }}</b>
+    </p>
+    <p class="info" *ngIf="!status">
+      Click <a (click)="verify()">here</a> to verify this account.
+    </p>
+  </div>
+</div>

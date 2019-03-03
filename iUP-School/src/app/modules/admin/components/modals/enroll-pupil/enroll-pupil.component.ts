@@ -13,6 +13,7 @@ import * as moment from 'moment';
 })
 export class EnrollPupilComponent implements OnInit {
   public onClose: Subject<boolean>;
+  isEdit: boolean = false;
 
   pupilForm: FormGroup;
   levelList: Array<any> = [];

@@ -30,6 +30,8 @@ export class ManageGradesComponent implements OnInit {
   project;
   participation;
 
+  gradeAVG;
+
   constructor(
     private bsModalRef: BsModalRef,
     private modalService: BsModalService,
@@ -46,8 +48,15 @@ export class ManageGradesComponent implements OnInit {
     if (this.gradingId) {
       this._grading.getGradeDetails(this.gradingId).subscribe(res => {
         this.details = res;
+        this.getAVG();
       });
     }
+  }
+
+  getAVG() {
+    this._grading.updateGrades(this.gradingId).subscribe(res => {
+      this.gradeAVG = res || 0;
+    });
   }
 
   saveGrades() {

@@ -34,4 +34,8 @@ export class PupilsService {
   addPupil(data): Observable<any> {
     return this._http.post(`${baseUrl}/addPupil.php`, data);
   }
+
+  getPupilByLevel(level): Observable<any> {
+    return this._http.get(`${baseUrl}/getPupilByLevel.php?level=${level}`);
+  }
 }

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeacherService } from '@shared/services';
 import { BsModalService } from 'ngx-bootstrap';
 import { TeacherInfoComponent } from '../../components/modals/teacher-info/teacher-info.component';
+import { TeacherVerifyComponent } from '../../components/modals/teacher-verify/teacher-verify.component';
+import { ConfirmationComponent } from '@shared/components/modals/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-teacher',
@@ -27,6 +29,7 @@ export class TeacherComponent implements OnInit {
   getTeachers() {
     this._teacher.getAll().subscribe(res => {
       this.teacherList = res;
+      console.log('teacherList', res);
     });
   }
 
@@ -44,9 +47,9 @@ export class TeacherComponent implements OnInit {
     this.getInfo();
   }
 
-  addInfo() {
+  addInfo(item) {
     const initialState = {
-      teacher: this.teacherInfo
+      teacher: item
     };
     const modalRef = this.modalService.show(TeacherInfoComponent, {
       initialState,
@@ -55,7 +58,41 @@ export class TeacherComponent implements OnInit {
     });
     (<TeacherInfoComponent>modalRef.content).onClose.subscribe(result => {
       if (result === true) {
-        this.getInfo();
+        this.getTeachers();
+      }
+    });
+  }
+
+  verify(item) {
+    const initialState = {
+      teacher: item
+    };
+    const modalRef = this.modalService.show(TeacherVerifyComponent, {
+      initialState
+    });
+    (<TeacherVerifyComponent>modalRef.content).onClose.subscribe(result => {
+      if (result === true) {
+        this.getTeachers();
+      }
+    });
+  }
+
+  deleteUser(item) {
+    const initialState = {
+      message: `Do you want to delete teacher ${item.lastName}?`
+    };
+    const modalRef = this.modalService.show(ConfirmationComponent, {
+      initialState,
+      keyboard: false,
+      ignoreBackdropClick: true
+    });
+    (<ConfirmationComponent>modalRef.content).onClose.subscribe(result => {
+      if (result === true) {
+        this._teacher.delete(item.id).subscribe(res => {
+          if (res) {
+            this.getTeachers();
+          }
+        });
       }
     });
   }

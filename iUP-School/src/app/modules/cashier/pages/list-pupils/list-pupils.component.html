@@ -1,0 +1,36 @@
+<div class="pupil-list">
+  <div class="forms">
+    <div class="up-input">
+      <select
+        name="level"
+        [(ngModel)]="level"
+        (ngModelChange)="selectLevel($event)"
+      >
+        <option value="" selected disabled>Select Grade Level</option>
+        <option *ngFor="let item of gradeLevels" [value]="item.id">
+          {{ item.level }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="content" *ngIf="listOfPupils.length">
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Pupil Name</th>
+            <th>Sex</th>
+            <th>Grade Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listOfPupils" (click)="select(item)">
+            <td>{{ item.lastName + ', ' + item.firstName }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.level }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

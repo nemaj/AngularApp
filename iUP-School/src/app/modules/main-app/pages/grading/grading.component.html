@@ -2,12 +2,12 @@
   class="breadcumb-area bg-img"
   style="background-image: url(assets/img/bg-img/breadcumb.jpg);"
 >
-  <div class="bradcumbContent"><h2>Grading System</h2></div>
+  <div class="bradcumbContent"><h2>Grading Information</h2></div>
 </div>
 <div class="grading section-padding-100">
   <div class="container">
     <div class="controls">
-      <h3>Panel Control:</h3>
+      <h3>Grading Level:</h3>
       <div class="forms">
         <div class="select up-input">
           <select
@@ -15,7 +15,6 @@
             name="level"
             id="level"
             [(ngModel)]="level"
-            (ngModelChange)="getPupils()"
             required
           >
             <option value="" selected disabled>Select grade level</option>

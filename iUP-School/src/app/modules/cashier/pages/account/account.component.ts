@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PupilsService, CashierService } from '@shared/services';
+import { PupilsService, CashierService, UsersService } from '@shared/services';
 
 import { MONTH } from '@shared/constants/date';
 import { BsModalService } from 'ngx-bootstrap';
@@ -21,15 +21,22 @@ export class AccountComponent implements OnInit {
   details: Array<any> = [];
   totalAmount: number = 0;
 
+  isPaid: boolean = false;
+
+  cashierInfo;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private modalService: BsModalService,
     private _pupil: PupilsService,
-    private _cashier: CashierService
+    private _cashier: CashierService,
+    private _users: UsersService
   ) {}
 
   ngOnInit() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.getCashierInfo(currentUser.usersId);
     this.pupilId = this.activatedRoute.snapshot.params.id || 0;
     if (!this.pupilId) {
       this.router.navigate(['/cashier']);
@@ -38,6 +45,15 @@ export class AccountComponent implements OnInit {
     this.getDetails();
     const m = new Date().getMonth();
     this.month = MONTH[m];
+  }
+
+  getCashierInfo(id) {
+    if (id) {
+      this._users.getEachUsers(id).subscribe(res => {
+        console.log('info', res);
+        this.cashierInfo = res;
+      });
+    }
   }
 
   payNow() {
@@ -71,24 +87,27 @@ export class AccountComponent implements OnInit {
     if (this.pupilId) {
       this._pupil.getInfo(this.pupilId).subscribe(res => {
         this.pupilInfo = res;
-        console.log('info', res);
       });
     }
   }
 
   getDetails() {
     this._cashier.getDetails(this.pupilId).subscribe(res => {
-      console.log('details', res);
       this.accountDetails = res;
       const test = res;
+      let paid = true;
       this.details = test.map(obj => {
         obj.amount = null;
         obj.tempAmount = null;
         obj.checked = false || obj.price <= 0;
         obj.paid = obj.price <= 0;
         // obj.amount = obj.price;
+        if (!obj.paid && paid) {
+          paid = false;
+        }
         return obj;
       });
+      this.isPaid = paid;
     });
   }
 

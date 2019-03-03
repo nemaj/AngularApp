@@ -1,0 +1,45 @@
+.pupil-list {
+  > .forms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .up-input {
+      width: 200px;
+    }
+  }
+  > .content {
+    div.table {
+      width: 500px;
+      margin: auto;
+      margin-top: 20px;
+      border-radius: 3px;
+      border: 1px solid;
+      border-color: rgba(33, 37, 41, 0.4);
+      table {
+        width: 100%;
+        tbody {
+          tr {
+            cursor: pointer;
+            opacity: 0.8;
+            &:hover {
+              opacity: 1;
+            }
+          }
+          td {
+            // &:last-child {
+            //   width: 100px;
+            //   text-align: right;
+            //   .fa {
+            //     cursor: pointer;
+            //     opacity: 0.7;
+            //     &:hover {
+            //       opacity: 1;
+            //     }
+            //   }
+            // }
+          }
+        }
+      }
+    }
+  }
+}

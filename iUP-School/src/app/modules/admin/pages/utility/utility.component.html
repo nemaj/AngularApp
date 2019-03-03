@@ -67,5 +67,39 @@
         </div>
       </div>
     </tab>
+    <tab heading="Grade Level">
+      <button class="btn btn-success btn-add mt-4 mb-1" (click)="addLevel()">
+        Add Grade Level
+      </button>
+      <div class="card strpied-tabled-with-hover mt-1">
+        <div class="card-body">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th style="width:17px;">No.</th>
+                <th width="50%">Level</th>
+                <th width="20%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ListOfLevel; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ item.level }}</td>
+                <td class="action">
+                  <span
+                    class="fa fa-pencil-square-o"
+                    (click)="editLevel(item)"
+                  ></span>
+                  <span
+                    class="fa fa-trash-o"
+                    (click)="deleteLevel(item)"
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </tab>
   </tabset>
 </div>

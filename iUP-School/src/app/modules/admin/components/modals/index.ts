@@ -8,6 +8,9 @@ import { EnrollPupilComponent } from './enroll-pupil/enroll-pupil.component';
 import { TeacherInfoComponent } from './teacher-info/teacher-info.component';
 import { AddAreaComponent } from './add-area/add-area.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { TeacherVerifyComponent } from './teacher-verify/teacher-verify.component';
+import { AddLevelComponent } from './add-level/add-level.component';
+import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
 
 export const AdminModals = [
   AddUserComponent,
@@ -19,5 +22,8 @@ export const AdminModals = [
   EnrollPupilComponent,
   TeacherInfoComponent,
   AddAreaComponent,
-  AddSubjectComponent
+  AddSubjectComponent,
+  TeacherVerifyComponent,
+  AddLevelComponent,
+  ManageScheduleComponent
 ];

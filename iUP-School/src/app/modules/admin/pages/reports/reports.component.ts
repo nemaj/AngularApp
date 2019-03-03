@@ -10,6 +10,7 @@ export class ReportsComponent implements OnInit {
   enrolledPupils: Array<any> = [];
   preEnrolledPupils: Array<any> = [];
   teachers: Array<any> = [];
+  schedules: Array<any> = [];
 
   constructor(private _reports: ReportsService, private _print: PrintService) {}
 
@@ -71,7 +72,7 @@ export class ReportsComponent implements OnInit {
     const rows = [];
     this.teachers.forEach((item, idx) => {
       const arr = [
-        `${item.lastName}, ${item.firstName} ${item.middleName}`,
+        `${item.firstName} ${item.lastName}`,
         item.sex,
         item.advisory
       ];
@@ -82,10 +83,11 @@ export class ReportsComponent implements OnInit {
 
   getClassSchedules() {
     this._reports.getClassSchedules().subscribe(res => {
-      console.log('list', res);
-      this.teachers = res;
+      this.schedules = res;
     });
   }
 
-  printSchedules() {}
+  printSchedules() {
+    this._print.printSchedules(this.schedules);
+  }
 }

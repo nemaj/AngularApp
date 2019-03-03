@@ -5,6 +5,7 @@ import { CashierComponent } from './pages/cashier/cashier.component';
 import { SearchComponent } from './pages/search/search.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ManagePaymentComponent } from './pages/manage-payment/manage-payment.component';
+import { ListPupilsComponent } from './pages/list-pupils/list-pupils.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
       { path: '', component: SearchComponent },
       { path: 'account/:id', component: AccountComponent },
       { path: 'settings', component: ManagePaymentComponent },
+      { path: 'list', component: ListPupilsComponent },
       { path: '**', redirectTo: '' }
     ]
   },

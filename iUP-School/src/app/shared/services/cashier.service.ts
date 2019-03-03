@@ -15,6 +15,12 @@ export class CashierService {
     return this._http.get(`${baseUrl}/pupils/search.php?search=${search}`);
   }
 
+  findByPupil(search, id): Observable<any> {
+    return this._http.get(
+      `${baseUrl}/pupils/findPupilByParent.php?search=${search}&id=${id}`
+    );
+  }
+
   paybills(data): Observable<any> {
     return this._http.post(`${baseUrl}/billing/paybills.php`, data);
   }

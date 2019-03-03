@@ -13,6 +13,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ManagePaymentComponent } from './pages/manage-payment/manage-payment.component';
 import { Modals } from './components/modals';
+import { ListPupilsComponent } from './pages/list-pupils/list-pupils.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { Modals } from './components/modals';
     SearchComponent,
     AccountComponent,
     ManagePaymentComponent,
+    ListPupilsComponent,
     ...Modals
   ],
   entryComponents: [...Modals]

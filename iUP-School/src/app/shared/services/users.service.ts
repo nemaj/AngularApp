@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '@env/environment.prod';
+import { environment } from '@env/environment';
 const baseUrl = `${environment.baseUrl}/users`;
 
 @Injectable({

@@ -34,4 +34,8 @@ export class GradingService {
   getGradeDetails(id): Observable<any> {
     return this._http.get(`${baseUrl}/getGradeDetails.php?id=${id}`);
   }
+
+  getPupilGradeBySubject(data): Observable<any> {
+    return this._http.post(`${baseUrl}/getPupilGradeBySubject.php`, data);
+  }
 }

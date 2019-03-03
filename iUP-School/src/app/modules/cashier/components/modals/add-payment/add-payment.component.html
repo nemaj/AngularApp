@@ -16,6 +16,16 @@
         <label>Price: </label>
         <input type="number" name="price" [(ngModel)]="price" required />
       </div>
+      <div class="up-input">
+        <label>Level: </label>
+        <select name="level" [(ngModel)]="level" required>
+          <option value="" selected disabled>Please Select Level</option>
+          <option value="0">All</option>
+          <option *ngFor="let item of gradeLevel" [value]="item.id">
+            {{ item.level }}
+          </option>
+        </select>
+      </div>
     </div>
     <div class="up-modal-footer">
       <button class="btn btn-default" (click)="close()">Cancel</button>

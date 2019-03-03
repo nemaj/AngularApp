@@ -11,6 +11,7 @@
             <tr>
               <th>Payment Name</th>
               <th>Price</th>
+              <th>Level</th>
               <th></th>
             </tr>
           </thead>
@@ -18,6 +19,7 @@
             <tr *ngFor="let item of criteriaList">
               <td>{{ item.name }}</td>
               <td>{{ item.price }}</td>
+              <td>{{ item.levelValue }}</td>
               <td>
                 <i class="fa fa-edit" (click)="edit(item)"></i>
                 <i class="fa fa-trash" (click)="delete(item)"></i>

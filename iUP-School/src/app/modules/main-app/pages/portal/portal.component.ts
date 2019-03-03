@@ -33,6 +33,7 @@ export class PortalComponent implements OnInit {
 
   materials: Array<any> = [];
   classSchedules: Array<any> = [];
+  parentId;
 
   constructor(
     private http: Http,
@@ -45,6 +46,8 @@ export class PortalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.parentId = currentUser.usersId;
     this.getLevel();
     this.getMaterials();
   }
@@ -56,7 +59,7 @@ export class PortalComponent implements OnInit {
     }
     this.searchTimeout = setTimeout(() => {
       this.isDoneSearch = true;
-      this._cashier.findPupil(value).subscribe(res => {
+      this._cashier.findByPupil(value, this.parentId).subscribe(res => {
         this.searchResult = res;
         console.log('res', res);
       });

@@ -6,7 +6,36 @@
       <span class="fa fa-window-close"></span>
     </button>
   </div>
-  <div class="up-modal-body schedule-details">
+  <div class="up-modal-body schedule-details" *ngIf="edit">
+    <a (click)="edit = false"><i class="fa fa-close"></i> Close</a>
+    <div class="time-input">
+      <label>Start Time: </label>
+      <timepicker [(ngModel)]="startTime"></timepicker>
+    </div>
+    <div class="time-input">
+      <label>End Time: </label> <timepicker [(ngModel)]="endTime"></timepicker>
+    </div>
+    <div class="time-input">
+      <select class="form-control" name="day" [(ngModel)]="day">
+        <option value="" selected disabled>Select day of schedule</option>
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+      </select>
+    </div>
+    <div class="time-input">
+      <select class="form-control" name="areas" [(ngModel)]="areas">
+        <option value="" selected disabled>Select learning areas</option>
+        <option *ngFor="let item of learningAreas" [value]="item.area">{{
+          item.area
+        }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="up-modal-body schedule-details" *ngIf="!edit">
+    <a (click)="edit = true"><i class="fa fa-pencil"></i> Edit</a>
     <p class="areas">
       Learning Areas: <b>{{ scheduleInfo?.areas }}</b>
     </p>
@@ -24,8 +53,13 @@
       Duration: <b>{{ duration + ' mins' }}</b>
     </p>
   </div>
-  <div class="up-modal-footer">
-    <button class="btn btn-default" (click)="close()">Ok</button>
-    <!-- <button class="btn up-button" type="button">Save</button> -->
+  <div class="up-modal-footer details">
+    <button class="btn up-button delete" *ngIf="!edit" (click)="delete()">
+      Delete
+    </button>
+    <button class="btn btn-default" *ngIf="!edit" (click)="close()">Ok</button>
+    <button class="btn up-button" *ngIf="edit" type="button" (click)="update()">
+      Update
+    </button>
   </div>
 </div>

@@ -22,4 +22,8 @@ export class SchedulesService {
   createSchedule(data, id: number = 0): Observable<any> {
     return this._http.post(`${baseUrl}/createSchedule.php?id=${id}`, data);
   }
+
+  deleteSchedule(id): Observable<any> {
+    return this._http.get(`${baseUrl}/removeSchedule.php?id=${id}`);
+  }
 }

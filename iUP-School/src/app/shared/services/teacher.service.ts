@@ -22,4 +22,16 @@ export class TeacherService {
   getInfo(id): Observable<any> {
     return this._http.get(`${baseUrl}/teachers/getInfo.php?id=${id}`);
   }
+
+  delete(id): Observable<any> {
+    return this._http.get(`${baseUrl}/teachers/removeTeacher.php?id=${id}`);
+  }
+
+  getStatus(id): Observable<any> {
+    return this._http.get(`${baseUrl}/teachers/getStatus.php?id=${id}`);
+  }
+
+  verify(id): Observable<any> {
+    return this._http.get(`${baseUrl}/teachers/verify.php?id=${id}`);
+  }
 }

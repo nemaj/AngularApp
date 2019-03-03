@@ -12,6 +12,7 @@ import { OptionsService, TeacherService } from '@shared/services';
 export class TeacherInfoComponent implements OnInit {
   myForm: FormGroup;
   public onClose: Subject<boolean>;
+  isEdit: boolean = false;
 
   teacher;
   levelList: Array<any> = [];

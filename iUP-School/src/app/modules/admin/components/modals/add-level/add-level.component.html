@@ -1,0 +1,28 @@
+<div class="up-modal">
+  <div class="up-modal-header">
+    <div class="main-logo"><main-logo></main-logo></div>
+    <h4 class="title">{{ isEdit ? 'Update' : 'Add' }} Grade Level</h4>
+    <button class="close" (click)="close()">
+      <span class="fa fa-window-close"></span>
+    </button>
+  </div>
+  <form>
+    <div class="up-modal-body areas-forms">
+      <div class="up-input">
+        <label>Level: </label>
+        <input type="text" name="level" [(ngModel)]="level" required />
+      </div>
+    </div>
+    <div class="up-modal-footer">
+      <button class="btn btn-default" (click)="close()">Cancel</button>
+      <button
+        class="btn up-button"
+        type="submit"
+        (click)="submit()"
+        [disabled]="!level"
+      >
+        {{ isEdit ? 'Update' : 'Save' }}
+      </button>
+    </div>
+  </form>
+</div>

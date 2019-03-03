@@ -1,5 +1,5 @@
 <div class="paybills">
-  <h4 class="text-center mb-2">Account</h4>
+  <h4 class="text-center mb-4">Statement of Account</h4>
   <div class="info">
     <label>Name: </label>
     <p>
@@ -32,12 +32,12 @@
           (ngModelChange)="checkItem(item)"
         />
       </p>
-      <p></p>
+      <p *ngIf="!isPaid"></p>
     </div>
     <div class="particular">
       <p class="text-center text-bold">Particular</p>
       <p *ngFor="let item of accountDetails">{{ item.name }}</p>
-      <p class="text-bold">TOTAL</p>
+      <p class="text-bold" *ngIf="!isPaid">TOTAL</p>
     </div>
     <div class="amount">
       <p class="text-center text-bold">Amount</p>
@@ -56,11 +56,18 @@
           (ngModelChange)="onChange(item, $event)"
         />
       </p>
-      <p class="text-center text-bold total">{{ totalAmount }}</p>
+      <p class="text-center text-bold total" *ngIf="!isPaid">
+        {{ totalAmount }}
+      </p>
     </div>
+  </div>
+  <div class="cashier-info">
+    <span>By: {{ cashierInfo?.firstName + ' ' + cashierInfo?.lastName }}</span>
   </div>
 </div>
 
 <div class="buttons">
-  <button class="btn up-button" (click)="payNow()">Pay Now</button>
+  <button class="btn up-button" (click)="payNow()" *ngIf="!isPaid">
+    Pay Now
+  </button>
 </div>

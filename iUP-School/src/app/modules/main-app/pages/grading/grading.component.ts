@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { OptionsService, GradingService } from '@shared/services';
+import {
+  OptionsService,
+  GradingService,
+  TeacherService
+} from '@shared/services';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap';
 import { PupilGradesComponent } from '../../components/modals';
@@ -17,20 +21,35 @@ export class GradingComponent implements OnInit {
   level = '';
   period = '';
 
+  teacherId: number = 0;
+
   constructor(
     private modalService: BsModalService,
     private toastr: ToastrService,
+    private _teacher: TeacherService,
     private _options: OptionsService,
     private _grading: GradingService
   ) {}
 
   ngOnInit() {
-    this.getLevel();
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.teacherId = currentUser.usersId;
+    this.getInfo();
+  }
+
+  getInfo() {
+    if (this.teacherId) {
+      this._teacher.getInfo(this.teacherId).subscribe(res => {
+        this.level = res.level;
+        this.getLevel();
+        this.getPupils();
+      });
+    }
   }
 
   getLevel() {
     this._options.getLevel().subscribe(res => {
-      this.levelList = res;
+      this.levelList = res.filter(i => +i.id === +this.level);
     });
   }
 

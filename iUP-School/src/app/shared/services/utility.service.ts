@@ -19,12 +19,20 @@ export class UtilityService {
     return this._http.post(`${baseUrl}/utilities/addArea.php?id=${id}`, data);
   }
 
+  addLevel(data, id: number = 0): Observable<any> {
+    return this._http.post(`${baseUrl}/utilities/addLevel.php?id=${id}`, data);
+  }
+
   deleteArea(id): Observable<any> {
     return this._http.get(`${baseUrl}/utilities/deleteArea.php?id=${id}`);
   }
 
   getSubjects(): Observable<any> {
     return this._http.get(`${baseUrl}/utilities/getSubjects.php`);
+  }
+
+  getLevel(): Observable<any> {
+    return this._http.get(`${baseUrl}/utilities/getLevel.php`);
   }
 
   getSubjectsByLevel(level): Observable<any> {
@@ -42,5 +50,9 @@ export class UtilityService {
 
   deleteSubject(id): Observable<any> {
     return this._http.get(`${baseUrl}/utilities/deleteSubject.php?id=${id}`);
+  }
+
+  deleteLevel(id): Observable<any> {
+    return this._http.get(`${baseUrl}/utilities/deleteLevel.php?id=${id}`);
   }
 }

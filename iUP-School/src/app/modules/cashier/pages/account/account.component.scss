@@ -6,6 +6,14 @@
   padding: 20px 10px;
   border-radius: 5px;
   box-shadow: 0 10px 6px -6px #bbb;
+  .cashier-info {
+    margin-top: 15px;
+    text-align: right;
+    > span {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
   .info {
     display: flex;
     margin-bottom: 10px;

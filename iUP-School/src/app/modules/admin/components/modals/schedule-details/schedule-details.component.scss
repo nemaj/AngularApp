@@ -1,7 +1,33 @@
 .schedule-details {
+  position: relative;
+  > a {
+    position: absolute;
+    cursor: pointer;
+    right: 15px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
   p {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 0;
+  }
+  .time-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    label {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 0;
+      min-width: 100px;
+    }
+  }
+}
+.details {
+  .delete {
+    float: left;
   }
 }

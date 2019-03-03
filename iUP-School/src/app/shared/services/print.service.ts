@@ -79,33 +79,19 @@ export class PrintService {
     };
 
     list.forEach((item, idx) => {
-      const columns = [
-        'No',
-        'Product Name',
-        'Price',
-        'Quantity',
-        'Total',
-        'Date'
-      ];
+      const columns = ['Day', 'Time', 'Areas'];
       const rows = [];
-      item.orders.forEach((o, i) => {
-        const arr = [
-          i + 1,
-          o.productName,
-          o.productPrice,
-          o.quantity,
-          o.totalPrice,
-          o.formatDate
-        ];
+      item.classSchedules.forEach((o, i) => {
+        const arr = [o.day, o.time, o.areas];
         rows.push(arr);
       });
       if (!idx) {
         doc.setFontSize(14);
-        doc.text(item.date, 40, 70);
+        doc.text(item.level, 40, 70);
         doc.autoTable(columns, rows, options);
       } else {
         doc.setFontSize(14);
-        doc.text(item.date, 40, doc.autoTableEndPosY() + 30);
+        doc.text(item.level, 40, doc.autoTableEndPosY() + 30);
         doc.autoTable(columns, rows, {
           startY: doc.autoTableEndPosY() + 40
         });

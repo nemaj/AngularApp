@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from '@shared/shared.module';
 import { AppLoadService } from '@shared/services';
 import { ToastrModule } from 'ngx-toastr';
+import { ListPupilsComponent } from './modules/pages/list-pupils/list-pupils.component';
 
 export function init_app(appLoadService: AppLoadService) {
   return () => appLoadService.initializeApp();
@@ -20,7 +21,7 @@ export function init_app(appLoadService: AppLoadService) {
     SharedModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, ListPupilsComponent],
   providers: [
     AppLoadService,
     {
