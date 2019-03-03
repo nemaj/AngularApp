@@ -1,0 +1,46 @@
+<app-admin-breadcrumbs [page]="breadcrumbs"></app-admin-breadcrumbs>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-header">
+        <span class="title">Products List</span>
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th width="20%" class="d-none d-sm-table-cell">
+                Type
+              </th>
+              <th width="20%" class="d-none d-sm-none d-md-table-cell">
+                Price
+              </th>
+              <th width="20%" class="d-none d-sm-none d-md-table-cell">
+                Stock
+              </th>
+              <th width="10%" style="text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of products">
+              <td>{{ item.name }}</td>
+              <td class="d-none d-sm-table-cell">{{ item.type }}</td>
+              <td class="d-none d-sm-none d-md-table-cell">
+                {{ item.type }}
+              </td>
+              <td class="d-none d-sm-none d-md-table-cell">
+                {{ item.stock }}
+              </td>
+              <td>
+                <div class="action">
+                  <i class="fa fa-trash-o" (click)="delete(item.id)"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

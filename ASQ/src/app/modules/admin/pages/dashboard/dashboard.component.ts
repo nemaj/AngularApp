@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
         {
           ticks: {
             beginAtZero: true,
-            stepSize: 100,
+            stepSize: 1000,
             callback: function(value) {
               return `₱${value}`;
             }

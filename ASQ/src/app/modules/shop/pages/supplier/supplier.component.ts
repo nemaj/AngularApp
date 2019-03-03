@@ -14,6 +14,7 @@ import { AddProductComponent } from '../../components/modals/add-product/add-pro
 import { CropperSettings } from 'ngx-img-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { UpdateSupplierLogoComponent } from '../../components/modals/update-supplier-logo/update-supplier-logo.component';
+import { ConfirmationComponent } from '@shared/components/modals';
 
 interface FileReaderEventTarget extends EventTarget {
   result: string;
@@ -314,5 +315,24 @@ export class SupplierComponent implements OnInit {
     this.productDesc = '';
     this.productPrice = '';
     this.productStock = '';
+  }
+
+  deleteProduct(productId) {
+    const initialState = {
+      message: `Do you want to delete this product?`
+    };
+    const modalRef = this.modalService.show(ConfirmationComponent, {
+      initialState,
+      class: 'shop-modal'
+    });
+    (<ConfirmationComponent>modalRef.content).onClose.subscribe(result => {
+      if (result === true) {
+        this._product.removeProduct(productId).subscribe(res => {
+          if (res) {
+            this.getProductList(this.businessId);
+          }
+        });
+      }
+    });
   }
 }

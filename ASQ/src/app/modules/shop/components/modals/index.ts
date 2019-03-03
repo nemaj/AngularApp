@@ -6,6 +6,7 @@ import { ViewReviewsComponent } from './view-reviews/view-reviews.component';
 import { ViewImagesComponent } from './view-images/view-images.component';
 import { CreateSupplierComponent } from './create-supplier/create-supplier.component';
 import { BrowseProductComponent } from './browse-product/browse-product.component';
+import { ConfirmMessageComponent } from './confirm-message/confirm-message.component';
 
 export const ShopModals = [
   AddProductComponent,
@@ -15,5 +16,6 @@ export const ShopModals = [
   ViewReviewsComponent,
   ViewImagesComponent,
   CreateSupplierComponent,
-  BrowseProductComponent
+  BrowseProductComponent,
+  ConfirmMessageComponent
 ];

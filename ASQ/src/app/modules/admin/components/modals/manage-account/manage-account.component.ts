@@ -12,6 +12,12 @@ export class ManageAccountComponent implements OnInit {
   public onClose: Subject<boolean>;
   info;
   password;
+  username;
+
+  isUserTimeout;
+  isUsernameChange: boolean = false;
+  usernameChange: boolean = false;
+  isUsernameValid: boolean = false;
 
   constructor(public bsModalRef: BsModalRef, private _users: UsersService) {}
 
@@ -28,14 +34,14 @@ export class ManageAccountComponent implements OnInit {
   }
 
   submit(status) {
-    if (status) {
+    if (status || !this.isUsernameValid) {
       return;
     }
     const postData = {
       id: this.info.id,
       firstName: this.info.firstName,
       lastName: this.info.lastName,
-      username: this.info.username,
+      username: this.username,
       password: this.password
     };
     this._users.updateUser(postData).subscribe(res => {
@@ -43,6 +49,24 @@ export class ManageAccountComponent implements OnInit {
         this.close(true);
       }
     });
+  }
+
+  checkUsername(value) {
+    if (this.info.username === value) {
+      return;
+    }
+    if (this.isUserTimeout) {
+      clearTimeout(this.isUserTimeout);
+    }
+    this.isUsernameValid = false;
+    this.usernameChange = true;
+
+    this.isUserTimeout = setTimeout(() => {
+      this._users.checkUsername(value).subscribe(res => {
+        this.usernameChange = false;
+        this.isUsernameValid = !res;
+      });
+    }, 1000);
   }
 
   close(response = false) {

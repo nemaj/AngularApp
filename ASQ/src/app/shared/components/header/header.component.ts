@@ -10,6 +10,7 @@ import {
 } from '@shared/services';
 import { BsModalService } from 'ngx-bootstrap';
 import { BrowseProductComponent } from 'app/modules/shop/components/modals/browse-product/browse-product.component';
+import { ManageAccountComponent } from 'app/modules/admin/components/modals/manage-account/manage-account.component';
 
 @Component({
   selector: 'app-header',
@@ -96,6 +97,14 @@ export class HeaderComponent implements OnInit {
     if (evt.keyCode === 13) {
       this.searchProduct();
     }
+  }
+
+  manage() {
+    const initialState = {};
+    const modalRef = this.modalService.show(ManageAccountComponent, {
+      initialState,
+      class: 'shop-modal'
+    });
   }
 
   logout() {

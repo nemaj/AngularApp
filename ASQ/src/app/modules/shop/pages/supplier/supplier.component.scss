@@ -4,7 +4,8 @@
   min-height: 60vh;
   .agile_top_brands_grids .top_brand_left {
     &.edit {
-      .btn-edit {
+      .btn-edit,
+      .btn-remove {
         display: block;
       }
       .snipcart-details {
@@ -16,6 +17,15 @@
       position: absolute;
       z-index: 1;
       right: 20px;
+      top: 5px;
+      border: 0;
+      padding: 0px 5px;
+    }
+    .btn-remove {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      left: 20px;
       top: 5px;
       border: 0;
       padding: 0px 5px;

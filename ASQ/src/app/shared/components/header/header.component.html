@@ -26,6 +26,9 @@
               <button class="dropdown-item" routerLink="/orders">
                 <i class="fa fa-folder-open"></i> View Orders
               </button>
+              <button class="dropdown-item" (click)="manage()">
+                <i class="fa fa-cogs"></i> Manage Account
+              </button>
               <button class="dropdown-item" (click)="logout()">
                 <i class="fa fa-power-off"></i> Logout
               </button>
@@ -64,6 +67,9 @@
               </button>
               <button class="dropdown-item" routerLink="/chat">
                 <i class="fa fa-comments"></i> Messages
+              </button>
+              <button class="dropdown-item" (click)="manage()">
+                <i class="fa fa-cogs"></i> Manage Account
               </button>
               <button class="dropdown-item" (click)="logout()">
                 <i class="fa fa-power-off"></i> Logout

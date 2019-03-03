@@ -13,6 +13,10 @@ const baseUrl = environment.baseUrl;
 export class ProductsService {
   constructor(private _http: HttpClient) {}
 
+  getAllProducts(): Observable<any> {
+    return this._http.get(`${baseUrl}/products/getAllProducts.php`);
+  }
+
   searchProduct(text): Observable<any> {
     return this._http.get(
       `${baseUrl}/products/searchProduct.php?search=${text}`
@@ -104,6 +108,10 @@ export class ProductsService {
 
   removeType(id): Observable<any> {
     return this._http.get(`${baseUrl}/products/removeTypes.php?id=${id}`);
+  }
+
+  removeProduct(id): Observable<any> {
+    return this._http.get(`${baseUrl}/products/removeProduct.php?id=${id}`);
   }
 
   removeUnits(id): Observable<any> {

@@ -14,6 +14,35 @@
     <div class="forms">
       <div class="form-row">
         <div class="form-group col">
+          <label for="password">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            [(ngModel)]="username"
+            (ngModelChange)="checkUsername($event)"
+            #formUsername="ngModel"
+            required
+          />
+          <small
+            *ngIf="
+              formUsername.invalid &&
+              (formUsername.dirty || formUsername.touched) &&
+              formUsername.errors.required
+            "
+            class="form-text text-danger"
+            >This field is required.</small
+          >
+          <small
+            *ngIf="username && !isUsernameValid && !usernameChange"
+            class="form-text text-danger"
+            >Username is already used.</small
+          >
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
           <label for="password">New Password</label>
           <input
             type="password"

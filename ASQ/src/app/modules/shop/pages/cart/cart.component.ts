@@ -7,6 +7,8 @@ import {
 } from '@shared/services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService } from 'ngx-bootstrap';
+import { ConfirmMessageComponent } from '../../components/modals/confirm-message/confirm-message.component';
 
 @Component({
   selector: 'app-cart',
@@ -29,7 +31,8 @@ export class CartComponent implements OnInit {
     private _users: UsersService,
     private _cartService: CartService,
     private _currentUser: CurrentUserService,
-    private _orders: OrdersService
+    private _orders: OrdersService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -57,11 +60,27 @@ export class CartComponent implements OnInit {
         });
         this._orders.saveOrder(postData).subscribe(r => {
           if (r) {
-            this.router.navigate(['/orders']);
+            this.viewMessage();
           }
         });
       } else {
         this.router.navigate(['/customer-info']);
+      }
+    });
+  }
+
+  viewMessage() {
+    const { street, barangay, city, province } = this.customerInfo;
+    const initialState = {
+      address: `${street}, ${barangay}, ${city}, ${province}`
+    };
+    const modalRef = this.modalService.show(ConfirmMessageComponent, {
+      initialState,
+      class: 'shop-modal'
+    });
+    (<ConfirmMessageComponent>modalRef.content).onClose.subscribe(result => {
+      if (result === true) {
+        this.router.navigate(['/orders']);
       }
     });
   }

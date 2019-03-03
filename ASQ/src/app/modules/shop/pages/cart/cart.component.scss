@@ -104,6 +104,13 @@
             font-weight: bold;
             &.desc {
               font-weight: 500;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              width: 300px;
+              @media (max-width: 991px) {
+                width: 150px;
+              }
             }
             &.price {
               display: none;

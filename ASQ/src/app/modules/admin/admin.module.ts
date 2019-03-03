@@ -30,6 +30,7 @@ import { FarmerChartComponent } from './pages/farmer-chart/farmer-chart.componen
 import { SupplierChartComponent } from './pages/supplier-chart/supplier-chart.component';
 import { NewSupplierComponent } from './pages/new-supplier/new-supplier.component';
 import { ProductUnitComponent } from './pages/product-unit/product-unit.component';
+import { AdminProductComponent } from './pages/admin-product/admin-product.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { ProductUnitComponent } from './pages/product-unit/product-unit.componen
     FarmerChartComponent,
     SupplierChartComponent,
     NewSupplierComponent,
-    ProductUnitComponent
+    ProductUnitComponent,
+    AdminProductComponent
   ],
   entryComponents: [...AdminModals]
 })

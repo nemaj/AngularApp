@@ -11,6 +11,7 @@ import { FarmerChartComponent } from './pages/farmer-chart/farmer-chart.componen
 import { SupplierChartComponent } from './pages/supplier-chart/supplier-chart.component';
 import { NewSupplierComponent } from './pages/new-supplier/new-supplier.component';
 import { ProductUnitComponent } from './pages/product-unit/product-unit.component';
+import { AdminProductComponent } from './pages/admin-product/admin-product.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
       {
         path: 'product-type',
         component: ProductTypeComponent,
+        data: { page: 'Products' }
+      },
+      {
+        path: 'products',
+        component: AdminProductComponent,
         data: { page: 'Products' }
       },
       {

@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Order Message</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="close()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  Thank you so much for purchasing the product. The product will be delivered
+  with in <b>2-3days</b>, <b>10:00am</b> at {{ address }}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="close()">
+    Ok, got it.
+  </button>
+</div>
