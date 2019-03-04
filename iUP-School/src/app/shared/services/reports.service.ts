@@ -26,4 +26,8 @@ export class ReportsService {
   getClassSchedules(): Observable<any> {
     return this._http.get(`${baseUrl}/reports/getClassSchedules.php`);
   }
+
+  getPupilsAccount(): Observable<any> {
+    return this._http.get(`${baseUrl}/reports/getPupilsAccount.php`);
+  }
 }

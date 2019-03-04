@@ -1,4 +1,7 @@
-<div class="paybills">
+<button class="btn up-button print" (click)="print('statement')">
+  <i class="fa fa-print"></i> Print
+</button>
+<div class="paybills" #statement id="statement">
   <h4 class="text-center mb-4">Statement of Account</h4>
   <div class="info">
     <label>Name: </label>

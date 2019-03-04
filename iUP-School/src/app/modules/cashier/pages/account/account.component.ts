@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PupilsService, CashierService, UsersService } from '@shared/services';
 
@@ -6,12 +6,16 @@ import { MONTH } from '@shared/constants/date';
 import { BsModalService } from 'ngx-bootstrap';
 import { ConfirmationComponent } from '@shared/components/modals/confirmation/confirmation.component';
 
+import html2canvas from 'html2canvas';
+import * as jsPDF from 'jspdf';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
+  @ViewChild('statement') private statement: ElementRef;
   pupilId;
   pupilInfo;
 
@@ -77,6 +81,7 @@ export class AccountComponent implements OnInit {
         this._cashier.paybills(postData).subscribe(res => {
           if (res) {
             this.getDetails();
+            this.print('receipt');
           }
         });
       }
@@ -147,5 +152,15 @@ export class AccountComponent implements OnInit {
       item.amount = item.price;
     }
     this.getTotal();
+  }
+
+  print(name) {
+    html2canvas(document.querySelector('#statement')).then(canvas => {
+      const doc = new jsPDF('p', 'pt', 'letter', true);
+      // const doc = new jsPDF('landscape');
+      doc.setFontSize(20);
+      doc.addImage(canvas, 'PNG', 45, 30);
+      doc.save(`${name}.pdf`);
+    });
   }
 }
