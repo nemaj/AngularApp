@@ -5,6 +5,7 @@ import { CreateParentComponent } from './pages/create-parent/create-parent.compo
 import { RegisterRoutingModule } from './register.routing';
 import { SharedModule } from '@shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotVerifiedComponent } from './pages/not-verified/not-verified.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [CreateComponent, CreateParentComponent]
+  declarations: [CreateComponent, CreateParentComponent, NotVerifiedComponent]
 })
 export class RegisterModule {}

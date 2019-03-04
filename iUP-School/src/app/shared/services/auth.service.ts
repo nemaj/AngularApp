@@ -32,7 +32,8 @@ export class AuthService {
               username: user.username,
               role: user.role,
               infoExist: user.infoExist,
-              isLogin: true
+              isLogin: true,
+              verify: user.verify
             };
 
             localStorage.setItem('currentUser', JSON.stringify(obj));
@@ -49,6 +50,6 @@ export class AuthService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
-    // location.reload();
+    location.reload();
   }
 }

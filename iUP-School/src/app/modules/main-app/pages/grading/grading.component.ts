@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {
   OptionsService,
   GradingService,
-  TeacherService
+  TeacherService,
+  ReportsService,
+  PrintService
 } from '@shared/services';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService } from 'ngx-bootstrap';
@@ -28,7 +30,9 @@ export class GradingComponent implements OnInit {
     private toastr: ToastrService,
     private _teacher: TeacherService,
     private _options: OptionsService,
-    private _grading: GradingService
+    private _grading: GradingService,
+    private _reports: ReportsService,
+    private _print: PrintService
   ) {}
 
   ngOnInit() {
@@ -79,5 +83,14 @@ export class GradingComponent implements OnInit {
 
     //   }
     // });
+  }
+
+  print() {
+    if (this.teacherId) {
+      this._reports.getPupilsGradeByTeacher(this.teacherId).subscribe(res => {
+        console.log('grades', res);
+        this._print.printGrades(res);
+      });
+    }
   }
 }

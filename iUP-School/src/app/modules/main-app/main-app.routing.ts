@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PortalComponent } from './pages/portal/portal.component';
 import { PreEnrollComponent } from './pages/pre-enroll/pre-enroll.component';
 import { GradingComponent } from './pages/grading/grading.component';
+import { TeacherManageInfoComponent } from './pages/teacher-manage-info/teacher-manage-info.component';
 
 export const routes: Routes = [
   {
@@ -36,7 +37,18 @@ export const routes: Routes = [
         data: { pageTitle: 'Grading System' },
         canActivate: [UsersCheck]
       },
-      { path: 'parent/:username', component: ParentInfoComponent }
+      {
+        path: 'parent/:username',
+        component: ParentInfoComponent,
+        data: { type: 'Parent' },
+        canActivate: [UsersCheck]
+      },
+      {
+        path: 'teacher/:username',
+        component: TeacherManageInfoComponent,
+        data: { type: 'Teacher' },
+        canActivate: [UsersCheck]
+      }
     ]
   }
 ];

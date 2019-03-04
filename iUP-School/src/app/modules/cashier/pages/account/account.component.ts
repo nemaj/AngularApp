@@ -79,9 +79,9 @@ export class AccountComponent implements OnInit {
           bills: this.details.filter(i => i.amount)
         };
         this._cashier.paybills(postData).subscribe(res => {
-          if (res) {
+          if (res && res.OR) {
             this.getDetails();
-            this.print('receipt');
+            this.print('receipt', res.OR);
           }
         });
       }
@@ -154,12 +154,17 @@ export class AccountComponent implements OnInit {
     this.getTotal();
   }
 
-  print(name) {
+  print(name, ORNumber = '') {
     html2canvas(document.querySelector('#statement')).then(canvas => {
       const doc = new jsPDF('p', 'pt', 'letter', true);
       // const doc = new jsPDF('landscape');
       doc.setFontSize(20);
-      doc.addImage(canvas, 'PNG', 45, 30);
+      let n = 40;
+      if (ORNumber) {
+        doc.text(`OR Number: ${ORNumber}`, 45, 40);
+        n = 50;
+      }
+      doc.addImage(canvas, 'PNG', 45, n);
       doc.save(`${name}.pdf`);
     });
   }

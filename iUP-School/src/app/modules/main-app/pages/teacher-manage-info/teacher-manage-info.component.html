@@ -24,16 +24,24 @@
                 <p class="post-title">
                   {{ userDetails?.firstName + ' ' + userDetails?.lastName }}
                 </p>
-                <div class="post-meta">
+                <div
+                  class="post-meta"
+                  *ngIf="userDetails?.info.email && userDetails?.info.gender"
+                >
                   <p>
                     <a>{{ userDetails?.info.email }}</a> |
                     <a>{{ userDetails?.info.gender }}</a>
                   </p>
                 </div>
-                <p style="margin:0">
+                <p style="margin:0" *ngIf="userDetails?.info.advisory !== '0'">
+                  Advisory: {{ getAdvisory(userDetails?.info.advisory) }}
+                </p>
+                <p style="margin:0" *ngIf="userDetails?.info.contact">
                   Contact No.: {{ userDetails?.info.contact }}
                 </p>
-                <p>Address: {{ userDetails?.info.address }}</p>
+                <p *ngIf="userDetails?.info.address">
+                  Address: {{ userDetails?.info.address }}
+                </p>
               </div>
             </div>
           </div>
@@ -131,6 +139,15 @@
             name="contact"
             formControlName="contact"
           />
+        </div>
+        <div class="up-input">
+          <label for="contact">Advisory</label>
+          <select id="advisory" name="advisory" formControlName="advisory">
+            <option value="" selected disabled>Select your advisory</option>
+            <option *ngFor="let item of gradeLevels" [value]="item.id">
+              {{ item.level }}
+            </option>
+          </select>
         </div>
         <div class="buttons">
           <button class="btn btn-default" *ngIf="isUpdate" (click)="editInfo()">

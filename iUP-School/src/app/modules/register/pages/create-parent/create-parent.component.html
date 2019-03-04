@@ -4,7 +4,18 @@
       <main-logo class="svg-logo-size"></main-logo>
       <span>I-UP School</span>
     </div>
-    <div class="header"><h3>Create Account</h3></div>
+    <div class="header">
+      <h3>Create Account ({{ type }})</h3>
+      <p *ngIf="type === 'Parent'">
+        Click <a routerLink="/create/teacher">here</a> for creating account for
+        Teacher
+      </p>
+      <p *ngIf="type !== 'Parent'">
+        Click <a routerLink="/create/parent">here</a> for creating account for
+        Parent
+      </p>
+    </div>
+
     <div class="form">
       <form [formGroup]="ngForm" (submit)="submit(ngForm.invalid)">
         <div class="up-input">

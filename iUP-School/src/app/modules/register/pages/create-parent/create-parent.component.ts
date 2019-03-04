@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PasswordValidation } from '@shared/utilities/password-validation';
-import { UsersService, ParentService, AuthService } from '@shared/services';
-import { Router } from '@angular/router';
+import {
+  UsersService,
+  ParentService,
+  AuthService,
+  AppLoadService
+} from '@shared/services';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-parent',
@@ -16,9 +21,13 @@ export class CreateParentComponent implements OnInit {
   isUserTimeout;
   isUsernameValid: boolean = false;
 
+  type;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private _load: AppLoadService,
     private _users: UsersService,
     private _parent: ParentService
   ) {
@@ -36,7 +45,10 @@ export class CreateParentComponent implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.activatedRoute.snapshot.data);
+    this.type = this.activatedRoute.snapshot.data.type;
+  }
 
   submit(status) {
     if (status) {
@@ -44,17 +56,18 @@ export class CreateParentComponent implements OnInit {
     }
     const postData = {
       ...this.ngForm.value,
-      role: '4'
+      role: this.type === 'Teacher' ? '3' : '4'
     };
     this._parent.createAccout(postData).subscribe(res => {
       if (res) {
         const obj = {
           username: this.ngForm.value.username,
-          role: '4',
+          role: this.type === 'Teacher' ? '3' : '4',
           isLogin: true
         };
 
         localStorage.setItem('currentUser', JSON.stringify(obj));
+        this._load.initializeApp();
         this.router.navigate([`/app/parent/${obj.username}`]);
       }
     });

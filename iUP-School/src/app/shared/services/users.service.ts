@@ -25,6 +25,10 @@ export class UsersService {
     return this._http.get(`${baseUrl}/getUsersInfo.php?username=${username}`);
   }
 
+  getTeacherInfo(username): Observable<any> {
+    return this._http.get(`${baseUrl}/getTeacherInfo.php?username=${username}`);
+  }
+
   addUser(data, id: number = 0): Observable<any> {
     return this._http.post(`${baseUrl}/addUser.php?id=${id}`, data);
   }

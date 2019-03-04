@@ -30,4 +30,8 @@ export class ReportsService {
   getPupilsAccount(): Observable<any> {
     return this._http.get(`${baseUrl}/reports/getPupilsAccount.php`);
   }
+
+  getPupilsGradeByTeacher(id): Observable<any> {
+    return this._http.get(`${baseUrl}/reports/getPupilsGrade.php?id=${id}`);
+  }
 }

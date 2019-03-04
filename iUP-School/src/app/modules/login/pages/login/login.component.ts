@@ -39,7 +39,11 @@ export class LoginComponent implements OnInit {
         ) {
           this.router.navigate([`/app/parent/${currentUser.username}`]);
         } else {
-          this.router.navigate(['/app']);
+          if (currentUser.verify) {
+            this.router.navigate(['/app']);
+          } else {
+            this.router.navigate(['/create/not-verified']);
+          }
         }
       } else {
         this.isInvalid = true;

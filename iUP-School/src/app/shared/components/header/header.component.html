@@ -44,6 +44,11 @@
                     <i class="fa fa-info-circle"></i> Profile
                   </a>
                 </li>
+                <li role="menuitem" *ngIf="userStatus?.isTeacher">
+                  <a class="dropdown-item" routerLink="teacher/{{ username }}">
+                    <i class="fa fa-info-circle"></i> Profile
+                  </a>
+                </li>
                 <li role="menuitem" *ngIf="userStatus?.isCashier">
                   <a class="dropdown-item" routerLink="/cashier">
                     <i class="fa fa-info-circle"></i> Biiling
