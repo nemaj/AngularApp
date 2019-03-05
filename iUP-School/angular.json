@@ -58,7 +58,8 @@
               "src/assets/js/active.js",
               "node_modules/moment/min/moment.min.js",
               "node_modules/jspdf/dist/jspdf.min.js",
-              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+              "node_modules/chart.js/dist/Chart.bundle.js"
             ]
           },
           "configurations": {
@@ -121,7 +122,8 @@
               "src/assets/js/active.js",
               "node_modules/moment/min/moment.min.js",
               "node_modules/jspdf/dist/jspdf.min.js",
-              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+              "node_modules/chart.js/dist/Chart.bundle.js"
             ],
             "assets": ["src/favicon.ico", "src/assets"]
           }

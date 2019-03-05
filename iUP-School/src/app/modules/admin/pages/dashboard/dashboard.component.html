@@ -1,3 +1,24 @@
-<p>
-  dashboard works!
-</p>
+<div class="row dashboard">
+  <div class="col-md-4 offset-md-4">
+    <div class="card percent">
+      <div class="card-body text-center">
+        <p>Estimate Pupil's Population</p>
+        <span>{{ pupilPercent }}%</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="chart-wrapper">
+      <canvas
+        *ngIf="isCollection"
+        #chartCollection
+        baseChart
+        [datasets]="collectionData"
+        [labels]="collectionLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+      ></canvas>
+    </div>
+  </div>
+</div>

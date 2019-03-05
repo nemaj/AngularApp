@@ -11,6 +11,7 @@ export class ReportsComponent implements OnInit {
   preEnrolledPupils: Array<any> = [];
   teachers: Array<any> = [];
   schedules: Array<any> = [];
+  incomes: Array<any> = [];
 
   constructor(private _reports: ReportsService, private _print: PrintService) {}
 
@@ -19,6 +20,7 @@ export class ReportsComponent implements OnInit {
     this.getPreEnrolled();
     this.getTeachers();
     this.getClassSchedules();
+    this.getIncome();
   }
 
   getEnrolled() {
@@ -89,5 +91,21 @@ export class ReportsComponent implements OnInit {
 
   printSchedules() {
     this._print.printSchedules(this.schedules);
+  }
+
+  getIncome() {
+    this._reports.getFinancialIncome().subscribe(res => {
+      this.incomes = res;
+    });
+  }
+
+  printIncome() {
+    const columns = ['OR No.', 'Pupil', 'Amount', 'Date'];
+    const rows = [];
+    this.incomes.forEach((item, idx) => {
+      const arr = [item.or_num, item.pupilName, item.amount, item.formatDate];
+      rows.push(arr);
+    });
+    this._print.generate('Financial Income', columns, rows);
   }
 }

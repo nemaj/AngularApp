@@ -34,4 +34,16 @@ export class ReportsService {
   getPupilsGradeByTeacher(id): Observable<any> {
     return this._http.get(`${baseUrl}/reports/getPupilsGrade.php?id=${id}`);
   }
+
+  getFinancialIncome(): Observable<any> {
+    return this._http.get(`${baseUrl}/reports/getFinancialIncome.php`);
+  }
+
+  incomeChart(): Observable<any> {
+    return this._http.get(`${baseUrl}/reports/incomeChart.php`);
+  }
+
+  getPupilsPercentage(): Observable<any> {
+    return this._http.get(`${baseUrl}/reports/getPupilsPercentage.php`);
+  }
 }

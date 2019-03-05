@@ -161,7 +161,7 @@ export class AccountComponent implements OnInit {
       doc.setFontSize(20);
       let n = 40;
       if (ORNumber) {
-        doc.text(`OR Number: ${ORNumber}`, 45, 40);
+        doc.text(`Official Receipt Number: ${ORNumber}`, 45, 40);
         n = 50;
       }
       doc.addImage(canvas, 'PNG', 45, n);

@@ -17,6 +17,7 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { HttpModule } from '@angular/http';
 import { FileSaverModule } from 'ngx-filesaver';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AdminComponent } from './pages/admin/admin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -45,7 +46,8 @@ import { ReportsComponent } from './pages/reports/reports.component';
     FileUploadModule,
     HttpModule,
     FileSaverModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ChartsModule
   ],
   declarations: [
     AdminComponent,
