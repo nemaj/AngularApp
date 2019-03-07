@@ -26,6 +26,12 @@ export const routes: Routes = [
         canActivate: [UsersCheck]
       },
       {
+        path: 'pre-enroll/:id',
+        component: PreEnrollComponent,
+        data: { pageTitle: 'Pre Enrollment' },
+        canActivate: [UsersCheck]
+      },
+      {
         path: 'add-pupil',
         component: PreEnrollComponent,
         data: { pageTitle: 'Pupil Form' },

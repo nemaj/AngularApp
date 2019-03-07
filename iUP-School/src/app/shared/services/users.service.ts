@@ -40,4 +40,8 @@ export class UsersService {
   deleteUser(id): Observable<any> {
     return this._http.get(`${baseUrl}/removeUser.php?id=${id}`);
   }
+
+  updateUser(data): Observable<any> {
+    return this._http.post(`${baseUrl}/updateUser.php`, data);
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { AppLoadService, UsersService, AuthService } from '@shared/services';
+import { BsModalService } from 'ngx-bootstrap';
+import { AccountSettingComponent } from '../modals/account-setting/account-setting.component';
 
 @Component({
   selector: 'app-header',
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   constructor(
+    private modalService: BsModalService,
     private _load: AppLoadService,
     private _auth: AuthService,
     private _users: UsersService
@@ -53,6 +56,18 @@ export class HeaderComponent implements OnInit {
   getInfo(username) {
     this._users.getUsersInfo(username).subscribe(res => {
       this.accountName = `${res.firstName} ${res.lastName}`;
+    });
+  }
+
+  accountSettings() {
+    const modalRef = this.modalService.show(AccountSettingComponent, {
+      keyboard: false,
+      ignoreBackdropClick: true
+    });
+    (<AccountSettingComponent>modalRef.content).onClose.subscribe(result => {
+      if (result === true) {
+        console.log('ok');
+      }
     });
   }
 

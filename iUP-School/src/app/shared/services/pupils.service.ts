@@ -38,4 +38,8 @@ export class PupilsService {
   getPupilByLevel(level): Observable<any> {
     return this._http.get(`${baseUrl}/getPupilByLevel.php?level=${level}`);
   }
+
+  updateInfo(data): Observable<any> {
+    return this._http.post(`${baseUrl}/updateInfo.php`, data);
+  }
 }

@@ -31,9 +31,20 @@
       }
     }
     .grade-details {
+      position: relative;
       margin: auto;
       margin-top: 20px;
       width: 600px;
+      > .pupil-edit {
+        position: absolute;
+        font-size: 18px;
+        right: 10px;
+        cursor: pointer;
+        opacity: 0.6;
+        &:hover {
+          opacity: 1;
+        }
+      }
       p {
         font-size: 16px;
         margin-bottom: 0;

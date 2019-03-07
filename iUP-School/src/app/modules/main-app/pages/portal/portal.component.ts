@@ -12,6 +12,7 @@ import { RequestOptions, ResponseContentType, Http } from '@angular/http';
 import { FileSaverService } from 'ngx-filesaver';
 
 import { environment } from '@env/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-portal',
@@ -37,6 +38,7 @@ export class PortalComponent implements OnInit {
 
   constructor(
     private http: Http,
+    private router: Router,
     private _FileSaverService: FileSaverService,
     private _material: MaterialsService,
     private _schedule: SchedulesService,
@@ -73,6 +75,12 @@ export class PortalComponent implements OnInit {
     this.searchInput = `${item.lastName}, ${item.firstName} ${item.middleName}`;
     this.isDoneSearch = false;
     this.getPupilGrades();
+  }
+
+  gotoPupilDetails() {
+    if (this.selectedPupilId) {
+      this.router.navigate([`/app/pre-enroll/${this.selectedPupilId}`]);
+    }
   }
 
   getPupilGrades() {

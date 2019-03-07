@@ -15,6 +15,7 @@ import * as moment from 'moment';
 export class PreEnrollComponent implements OnInit {
   parentForm: FormGroup;
   pageTitle;
+  pupilId;
 
   levelList: Array<any> = [];
 
@@ -41,6 +42,43 @@ export class PreEnrollComponent implements OnInit {
 
   ngOnInit() {
     this.getLevel();
+    this.pupilId =
+      (this.activatedRoute.snapshot.params &&
+        this.activatedRoute.snapshot.params.id) ||
+      '';
+    if (this.pupilId) {
+      this.getDetails();
+    }
+  }
+
+  getDetails() {
+    this._pupil.getInfo(this.pupilId).subscribe(res => {
+      this.parentForm.controls.fname.setValue(res.firstName);
+      this.parentForm.controls.lname.setValue(res.lastName);
+      this.parentForm.controls.mname.setValue(res.middleName);
+      this.parentForm.controls.gender.setValue(res.gender);
+      this.parentForm.controls.birthdate.setValue(res.birthdate);
+      this.parentForm.controls.birthplace.setValue(res.birthplace);
+      this.parentForm.controls.address.setValue(res.address);
+      this.parentForm.controls.level.setValue(res.levelId);
+    });
+  }
+
+  updatePupil() {
+    const postData = {
+      ...this.parentForm.value,
+      bdate: moment(this.parentForm.value.birthdate).format('YYYY-MM-DD'),
+      pupilId: this.pupilId
+    };
+    this._pupil.updateInfo(postData).subscribe(res => {
+      if (res) {
+        this._toastr.success(
+          'Pupil update details successfully!',
+          'Pupil Information'
+        );
+        this.router.navigate(['/app']);
+      }
+    });
   }
 
   getLevel() {
@@ -51,6 +89,11 @@ export class PreEnrollComponent implements OnInit {
 
   enroll(status) {
     if (status) {
+      return;
+    }
+
+    if (this.pupilId) {
+      this.updatePupil();
       return;
     }
 

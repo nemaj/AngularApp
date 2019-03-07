@@ -27,6 +27,9 @@
               </div>
             </div>
             <div class="grade-details" *ngIf="selectedPupilId">
+              <a class="pupil-edit" (click)="gotoPupilDetails()">
+                <i class="fa fa-pencil-square-o"></i>
+              </a>
               <p>
                 Name:
                 <span>{{
