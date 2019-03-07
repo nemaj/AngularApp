@@ -55,13 +55,44 @@ export class DashboardComponent implements OnInit {
   getCollection() {
     this._reports.incomeChart().subscribe(res => {
       if (res && res.length) {
+        let max = 0;
         res.forEach(item => {
+          if (max < +item.amount) {
+            max = +item.amount;
+          }
           this.collectionLabels.push(item.month);
           this.collectionData[0].data.push(+item.amount);
         });
-        this.isCollection = true;
+        this.setOptions(max);
       }
     });
+  }
+
+  setOptions(stat) {
+    let maxStat = 5000;
+    if (stat > 4000) {
+      maxStat = stat + 1000;
+    }
+    this.barChartOptions = {
+      scaleShowVerticalLines: false,
+      responsive: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              max: maxStat,
+              min: 0,
+              stepSize: 1000,
+              callback: function(value) {
+                return `₱${value}`;
+              }
+            }
+          }
+        ]
+      }
+    };
+    this.isCollection = true;
   }
 
   getPupilPercentage() {

@@ -26,4 +26,8 @@ export class ActivitiesService {
   deleteActivity(id): Observable<any> {
     return this._http.get(`${baseUrl}/deleteActivity.php?id=${id}`);
   }
+
+  getNearEvent(): Observable<any> {
+    return this._http.get(`${baseUrl}/getNearEvent.php`);
+  }
 }

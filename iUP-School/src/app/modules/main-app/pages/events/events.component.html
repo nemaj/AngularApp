@@ -1,0 +1,23 @@
+<div
+  class="breadcumb-area bg-img"
+  style="background-image: url(assets/img/bg-img/breadcumb.jpg);"
+>
+  <div class="bradcumbContent">
+    <h2>{{ pageTitle }}</h2>
+  </div>
+</div>
+<div class="events section-padding-100">
+  <div class="container text-center">
+    <p *ngIf="!eventDetail?.id">No Upcoming Event.</p>
+    <div *ngIf="eventDetail?.id">
+      <p>
+        Event: <b>{{ eventDetail?.title }}</b>
+      </p>
+      <p>
+        ( {{ eventDetail?.start | date: 'mediumDate' }}
+        {{ eventDetail?.end ? 'to' : '' }}
+        {{ eventDetail?.end | date: 'mediumDate' }} )
+      </p>
+    </div>
+  </div>
+</div>

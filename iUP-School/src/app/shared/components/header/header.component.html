@@ -111,6 +111,11 @@
                   </a>
                 </li>
                 <li>
+                  <a routerLink="events" *ngIf="userStatus?.isParent">
+                    Upcoming Event
+                  </a>
+                </li>
+                <li>
                   <a routerLink="grading" *ngIf="userStatus?.isTeacher">
                     Grading
                   </a>

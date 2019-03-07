@@ -22,6 +22,7 @@ import { GradingComponent } from './pages/grading/grading.component';
 import { Modals } from './components/modals';
 import { HttpModule } from '@angular/http';
 import { TeacherManageInfoComponent } from './pages/teacher-manage-info/teacher-manage-info.component';
+import { EventsComponent } from './pages/events/events.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { TeacherManageInfoComponent } from './pages/teacher-manage-info/teacher-
     PreEnrollComponent,
     GradingComponent,
     Modals,
-    TeacherManageInfoComponent
+    TeacherManageInfoComponent,
+    EventsComponent
   ],
   entryComponents: [...Modals]
 })

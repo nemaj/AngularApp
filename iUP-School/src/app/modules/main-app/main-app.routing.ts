@@ -10,6 +10,7 @@ import { PortalComponent } from './pages/portal/portal.component';
 import { PreEnrollComponent } from './pages/pre-enroll/pre-enroll.component';
 import { GradingComponent } from './pages/grading/grading.component';
 import { TeacherManageInfoComponent } from './pages/teacher-manage-info/teacher-manage-info.component';
+import { EventsComponent } from './pages/events/events.component';
 
 export const routes: Routes = [
   {
@@ -47,6 +48,12 @@ export const routes: Routes = [
         path: 'parent/:username',
         component: ParentInfoComponent,
         data: { type: 'Parent' },
+        canActivate: [UsersCheck]
+      },
+      {
+        path: 'events',
+        component: EventsComponent,
+        data: { pageTitle: 'School Events' },
         canActivate: [UsersCheck]
       },
       {
