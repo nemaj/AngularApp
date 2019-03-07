@@ -19,16 +19,23 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._activity.getNearEvent().subscribe(res => {
-      if (res && +res.days <= 5) {
-        this._toastr.info(
-          `'${res.title}' is on ${res.formatDate}`,
-          'Upcoming Event',
-          {
-            timeOut: 10000
-          }
-        );
-      }
-    });
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser || !currentUser.isLogin) {
+      return;
+    }
+    const { status } = this._user.getUserInfo();
+    if (status && status.isParent) {
+      this._activity.getNearEvent().subscribe(res => {
+        if (res && +res.days <= 5) {
+          this._toastr.info(
+            `'${res.title}' is on ${res.formatDate}`,
+            'Upcoming Event',
+            {
+              timeOut: 10000
+            }
+          );
+        }
+      });
+    }
   }
 }
