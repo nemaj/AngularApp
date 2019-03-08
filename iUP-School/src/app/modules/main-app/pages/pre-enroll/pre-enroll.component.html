@@ -139,12 +139,7 @@
         </div>
         <div class="select up-input">
           <label for="address">Grade Level</label>
-          <select
-            class="form-control"
-            name="level"
-            formControlName="level"
-            [attr.disabled]="pupilId"
-          >
+          <select class="form-control" name="level" formControlName="level">
             <option *ngFor="let lvl of levelList" [value]="lvl.id">
               {{ lvl.level }}
             </option>
@@ -162,7 +157,7 @@
         </div>
         <div class="buttons">
           <button class="btn up-button " [disabled]="parentForm.invalid">
-            {{ pageTitle === 'Pre Enrollment' ? 'Enroll' : 'Save' }}
+            {{ setButtonLabel() }}
           </button>
         </div>
       </form>

@@ -16,6 +16,7 @@ export class PreEnrollComponent implements OnInit {
   parentForm: FormGroup;
   pageTitle;
   pupilId;
+  isUpdating: boolean = false;
 
   levelList: Array<any> = [];
 
@@ -41,6 +42,7 @@ export class PreEnrollComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isUpdating = false;
     this.getLevel();
     this.pupilId =
       (this.activatedRoute.snapshot.params &&
@@ -53,6 +55,7 @@ export class PreEnrollComponent implements OnInit {
 
   getDetails() {
     this._pupil.getInfo(this.pupilId).subscribe(res => {
+      this.isUpdating = true;
       this.parentForm.controls.fname.setValue(res.firstName);
       this.parentForm.controls.lname.setValue(res.lastName);
       this.parentForm.controls.mname.setValue(res.middleName);
@@ -109,6 +112,16 @@ export class PreEnrollComponent implements OnInit {
         this.router.navigate(['/app']);
       }
     });
+  }
+
+  setButtonLabel() {
+    if (this.pageTitle === 'Pre Enrollment' && !this.pupilId) {
+      return 'Enroll';
+    } else if (this.pupilId) {
+      return 'Update';
+    } else {
+      return 'Save';
+    }
   }
 
   get controls() {
