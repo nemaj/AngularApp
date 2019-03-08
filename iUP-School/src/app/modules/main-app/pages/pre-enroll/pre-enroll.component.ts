@@ -73,15 +73,16 @@ export class PreEnrollComponent implements OnInit {
       bdate: moment(this.parentForm.value.birthdate).format('YYYY-MM-DD'),
       pupilId: this.pupilId
     };
-    this._pupil.updateInfo(postData).subscribe(res => {
-      if (res) {
-        this._toastr.success(
-          'Pupil update details successfully!',
-          'Pupil Information'
-        );
-        this.router.navigate(['/app']);
-      }
-    });
+    console.log(postData);
+    // this._pupil.updateInfo(postData).subscribe(res => {
+    //   if (res) {
+    //     this._toastr.success(
+    //       'Pupil update details successfully!',
+    //       'Pupil Information'
+    //     );
+    //     this.router.navigate(['/app']);
+    //   }
+    // });
   }
 
   getLevel() {

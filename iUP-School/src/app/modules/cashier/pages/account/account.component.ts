@@ -80,6 +80,7 @@ export class AccountComponent implements OnInit {
         };
         this._cashier.paybills(postData).subscribe(res => {
           if (res && res.OR) {
+            console.log(res);
             this.getDetails();
             this.print('receipt', res.OR);
           }
