@@ -11,6 +11,10 @@ const baseUrl = environment.baseUrl;
 export class ParentService {
   constructor(private _http: HttpClient) {}
 
+  getPupils(id): Observable<any> {
+    return this._http.get(`${baseUrl}/parents/getPupils.php?id=${id}`);
+  }
+
   getParents(): Observable<any> {
     return this._http.get(`${baseUrl}/parents/getAll.php`);
   }

@@ -39,6 +39,16 @@
       > .pupil-edit {
         position: absolute;
         font-size: 18px;
+        right: 40px;
+        cursor: pointer;
+        opacity: 0.6;
+        &:hover {
+          opacity: 1;
+        }
+      }
+      > .pupil-close {
+        position: absolute;
+        font-size: 18px;
         right: 10px;
         cursor: pointer;
         opacity: 0.6;

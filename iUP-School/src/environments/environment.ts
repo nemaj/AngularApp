@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://school-api.co',
-  filePath: 'http://school-api.co/docs/'
+  baseUrl: 'http://localhost/Php_Projects/api',
+  filePath: 'http://localhost/Php_Projects/api/docs/'
 };
 
 /*

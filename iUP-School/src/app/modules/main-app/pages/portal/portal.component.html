@@ -9,8 +9,21 @@
     <div class="up-tabs">
       <tabset [justified]="true">
         <tab heading="Pupils Grade Info">
+          <div class="tab-material" *ngIf="!selectedPupilId">
+            <div
+              class="material"
+              *ngFor="let item of pupilList"
+              (click)="selectPupil(item)"
+            >
+              <p class="name">
+                {{
+                  item.firstName + ' ' + item.middleName + ' ' + item.lastName
+                }}
+              </p>
+            </div>
+          </div>
           <div class="tab-pupil">
-            <div class="up-input search">
+            <!-- <div class="up-input search">
               <input
                 type="text"
                 placeholder="Find Pupil..."
@@ -25,10 +38,17 @@
                   }}
                 </p>
               </div>
-            </div>
+            </div> -->
             <div class="grade-details" *ngIf="selectedPupilId">
-              <a class="pupil-edit" (click)="gotoPupilDetails()">
+              <a class="pupil-edit" title="Edit" (click)="gotoPupilDetails()">
                 <i class="fa fa-pencil-square-o"></i>
+              </a>
+              <a
+                class="pupil-close"
+                title="Close"
+                (click)="selectedPupilId = null"
+              >
+                <i class="fa fa-close"></i>
               </a>
               <p>
                 Name:

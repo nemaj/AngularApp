@@ -4,7 +4,8 @@ import {
   SchedulesService,
   OptionsService,
   CashierService,
-  GradingService
+  GradingService,
+  ParentService
 } from '@shared/services';
 
 import * as moment from 'moment';
@@ -27,6 +28,7 @@ export class PortalComponent implements OnInit {
   selectedPupil;
   selectedPupilId: number = 0;
   pupilGrades: Array<any> = [];
+  pupilList: Array<any> = [];
 
   classLevel = '';
 
@@ -44,12 +46,14 @@ export class PortalComponent implements OnInit {
     private _schedule: SchedulesService,
     private _options: OptionsService,
     private _cashier: CashierService,
+    private _parent: ParentService,
     private _grading: GradingService
   ) {}
 
   ngOnInit() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.parentId = currentUser.usersId;
+    this.getParentPupils();
     this.getLevel();
     this.getMaterials();
   }
@@ -63,9 +67,15 @@ export class PortalComponent implements OnInit {
       this.isDoneSearch = true;
       this._cashier.findByPupil(value, this.parentId).subscribe(res => {
         this.searchResult = res;
-        console.log('res', res);
       });
     }, 1000);
+  }
+
+  getParentPupils() {
+    this._parent.getPupils(this.parentId).subscribe(res => {
+      this.pupilList = res;
+      console.log('list', res);
+    });
   }
 
   selectPupil(item) {
